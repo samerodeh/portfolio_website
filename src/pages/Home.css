@@ -86,15 +86,20 @@
 /* About Section */
 .about-content {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr;
   gap: 60px;
   align-items: start;
+  justify-items: center;
 }
 
 .about-text {
   font-size: 1.1rem;
   line-height: 1.8;
   color: #b3b3b3;
+  text-align: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .about-text p {
@@ -106,6 +111,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  align-items: center;
 }
 
 .highlight-item {

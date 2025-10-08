@@ -40,26 +40,26 @@ const Contact = () => {
     {
       icon: "📧",
       title: "Email",
-      value: "your.email@example.com",
-      link: "mailto:your.email@example.com"
+      value: "samer.odeh592@outlook.com",
+      link: "mailto:samer.odeh592@outlook.com"
     },
     {
       icon: "📱",
       title: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567"
+      value: "+1 (514) 246-4894",
+      link: "tel:+15142464894"
     },
     {
       icon: "📍",
       title: "Location",
-      value: "San Francisco, CA",
+      value: "Montreal, QC, Canada",
       link: null
     },
     {
       icon: "💼",
       title: "LinkedIn",
-      value: "linkedin.com/in/yourprofile",
-      link: "https://linkedin.com/in/yourprofile"
+      value: "linkedin.com/in/samer-odeh-1265b1343/",
+      link: "https://www.linkedin.com/in/samer-odeh-1265b1343/"
     }
   ]
 
@@ -67,25 +67,19 @@ const Contact = () => {
     {
       name: "GitHub",
       icon: "🐙",
-      url: "https://github.com/yourusername",
+      url: "https://github.com/samerodeh",
       color: "#333"
     },
     {
-      name: "Twitter",
+      name: "X (Twitter)",
       icon: "🐦",
-      url: "https://twitter.com/yourusername",
+      url: "https://x.com/samerodehh",
       color: "#1DA1F2"
-    },
-    {
-      name: "Instagram",
-      icon: "📷",
-      url: "https://instagram.com/yourusername",
-      color: "#E4405F"
     },
     {
       name: "LinkedIn",
       icon: "💼",
-      url: "https://linkedin.com/in/yourprofile",
+      url: "https://www.linkedin.com/in/samer-odeh-1265b1343/",
       color: "#0077B5"
     }
   ]
@@ -109,9 +103,9 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="contact-form-section">
               <div className="form-header">
-                <h2 className="form-title">Send me a message</h2>
+                <h2 className="form-title">Drop me a line</h2>
                 <p className="form-subtitle">
-                  I'm always excited to hear about new opportunities and interesting projects
+                  Got a cool project idea or just want to chat? I'd love to hear from you.
                 </p>
               </div>
 
@@ -139,7 +133,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       className="form-input"
-                      placeholder="your.email@example.com"
+                      placeholder="samer.odeh592@outlook.com"
                       required
                     />
                   </div>
@@ -251,7 +245,7 @@ const Contact = () => {
                   <span className="status-text">Available for opportunities</span>
                 </div>
                 <p className="availability-note">
-                  Currently looking for internship opportunities and interesting projects to work on.
+                  Open to internships, freelance work, or just cool projects to collaborate on.
                 </p>
               </div>
             </div>

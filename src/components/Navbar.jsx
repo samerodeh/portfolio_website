@@ -29,6 +29,7 @@ const Navbar = () => {
         <Link to="/" className="navbar-brand">
           <span className="brand-text">Portfolio</span>
           <span className="brand-accent">.</span>
+          <div className="brand-divider"></div>
         </Link>
 
         {/* Desktop Navigation */}

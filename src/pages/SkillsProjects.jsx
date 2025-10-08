@@ -15,15 +15,12 @@ const SkillsProjects = () => {
         { name: "HTML5", level: 95, color: "#E34F26" },
         { name: "CSS3", level: 90, color: "#1572B6" },
         { name: "Tailwind CSS", level: 80, color: "#06B6D4" },
-        { name: "Vue.js", level: 70, color: "#4FC08D" }
       ]
     },
     backend: {
       title: "Backend Development",
       icon: "⚙️",
       technologies: [
-        { name: "Node.js", level: 85, color: "#339933" },
-        { name: "Express.js", level: 80, color: "#000000" },
         { name: "Python", level: 90, color: "#3776AB" },
         { name: "Java", level: 75, color: "#ED8B00" },
         { name: "C++", level: 70, color: "#00599C" },
@@ -41,7 +38,6 @@ const SkillsProjects = () => {
         { name: "AWS", level: 60, color: "#FF9900" },
         { name: "Firebase", level: 75, color: "#FFCA28" },
         { name: "Docker", level: 65, color: "#2496ED" },
-        { name: "Redis", level: 60, color: "#DC382D" }
       ]
     },
     tools: {
@@ -53,8 +49,6 @@ const SkillsProjects = () => {
         { name: "Figma", level: 70, color: "#F24E1E" },
         { name: "Postman", level: 80, color: "#FF6C37" },
         { name: "Linux", level: 65, color: "#FCC624" },
-        { name: "Agile/Scrum", level: 75, color: "#FF6B6B" },
-        { name: "Jest", level: 70, color: "#C21325" }
       ]
     }
   }
@@ -62,110 +56,56 @@ const SkillsProjects = () => {
   const projects = [
     {
       id: 1,
-      title: "Netflix Clone",
-      description: "A full-stack Netflix clone with user authentication, movie browsing, and recommendation system.",
-      image: "🎬",
-      technologies: ["React", "Node.js", "MongoDB", "JWT", "Stripe"],
-      category: "web",
+      title: "Face Detection App",
+      description: "Built a face detection app using Python and OpenCV. It can detect faces in images and videos, plus some basic recognition features.",
+      image: "👁️",
+      technologies: ["Python", "OpenCV", "Machine Learning", "Computer Vision", "Jupyter Notebook"],
+      category: "ai",
       features: [
-        "User authentication and profiles",
-        "Movie streaming interface",
-        "Search and filtering",
-        "Payment integration",
-        "Responsive design"
+        "Detects faces in photos and videos",
+        "Works with webcam input",
+        "Simple GUI interface",
+        "Can identify multiple faces at once",
+        "Built with Python and OpenCV"
       ],
-      github: "https://github.com/username/netflix-clone",
-      demo: "https://netflix-clone-demo.com",
+      github: "https://github.com/samerodeh/face_detection_app",
+      demo: null,
       status: "completed"
     },
     {
       id: 2,
-      title: "Task Management App",
-      description: "Collaborative task management platform with real-time updates and team collaboration features.",
-      image: "📋",
-      technologies: ["React", "Socket.io", "Express.js", "PostgreSQL", "Redis"],
+      title: "Database Management System",
+      description: "A full-stack application with PostgreSQL backend and React frontend for managing and querying databases efficiently.",
+      image: "🗄️",
+      technologies: ["React", "PostgreSQL", "SQL"],
       category: "web",
       features: [
-        "Real-time collaboration",
-        "Task assignment and tracking",
-        "Project timeline visualization",
-        "Notification system",
-        "File attachments"
+        "PostgreSQL database integration",
+        "React-based user interface",
+        "Database query and management tools",
+        "Real-time data visualization",
+        "User authentication system"
       ],
-      github: "https://github.com/username/task-manager",
-      demo: "https://task-manager-demo.com",
+      github: "https://github.com/samerodeh/database-project",
+      demo: null,
       status: "completed"
     },
     {
       id: 3,
-      title: "Weather Dashboard",
-      description: "Interactive weather dashboard with location-based forecasts and historical data visualization.",
-      image: "🌤️",
-      technologies: ["React", "D3.js", "OpenWeather API", "Chart.js", "PWA"],
+      title: "React UI Components",
+      description: "A collection of reusable React components and UI elements for building modern web applications.",
+      image: "⚛️",
+      technologies: ["React", "JavaScript", "CSS", "HTML", "Component Design"],
       category: "web",
       features: [
-        "Location-based forecasts",
-        "Interactive data visualization",
-        "Historical weather trends",
-        "PWA capabilities",
-        "Offline support"
+        "Reusable React components",
+        "Modern UI design patterns",
+        "Responsive layouts",
+        "Interactive elements",
+        "Custom styling and themes"
       ],
-      github: "https://github.com/username/weather-dashboard",
-      demo: "https://weather-dashboard-demo.com",
-      status: "in-progress"
-    },
-    {
-      id: 4,
-      title: "Machine Learning Model",
-      description: "Sentiment analysis model for social media posts using natural language processing.",
-      image: "🤖",
-      technologies: ["Python", "TensorFlow", "NLTK", "Pandas", "Scikit-learn"],
-      category: "ai",
-      features: [
-        "Sentiment classification",
-        "Real-time processing",
-        "Model training pipeline",
-        "API integration",
-        "Performance metrics"
-      ],
-      github: "https://github.com/username/sentiment-analysis",
+      github: "https://github.com/samerodeh/react-ui-components",
       demo: null,
-      status: "completed"
-    },
-    {
-      id: 5,
-      title: "Mobile Fitness App",
-      description: "Cross-platform fitness tracking app with workout plans and progress monitoring.",
-      image: "💪",
-      technologies: ["React Native", "Firebase", "Redux", "Chart.js", "Push Notifications"],
-      category: "mobile",
-      features: [
-        "Workout tracking",
-        "Progress visualization",
-        "Social features",
-        "Push notifications",
-        "Offline mode"
-      ],
-      github: "https://github.com/username/fitness-app",
-      demo: null,
-      status: "in-progress"
-    },
-    {
-      id: 6,
-      title: "E-commerce Platform",
-      description: "Full-featured e-commerce platform with admin dashboard and payment processing.",
-      image: "🛒",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe", "AWS S3"],
-      category: "web",
-      features: [
-        "Product catalog",
-        "Shopping cart",
-        "Payment processing",
-        "Admin dashboard",
-        "Order management"
-      ],
-      github: "https://github.com/username/ecommerce-platform",
-      demo: "https://ecommerce-demo.com",
       status: "completed"
     }
   ]

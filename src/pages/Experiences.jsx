@@ -7,30 +7,30 @@ const Experiences = () => {
   const education = [
     {
       id: 1,
-      title: "Bachelor of Computer Science",
-      institution: "University Name",
-      period: "2021 - 2025",
-      description: "Pursuing a comprehensive computer science degree with focus on software engineering, algorithms, and data structures.",
+      title: "Bachelor of Computer Engineering (Co-op)",
+      institution: "Concordia University, Montreal",
+      period: "2021 - 2026",
+      description: "Pursuing a comprehensive computer engineering degree with co-op program, focusing on software engineering, hardware systems, algorithms, and data structures.",
       achievements: [
-        "Dean's List for 3 consecutive semesters",
-        "GPA: 3.8/4.0",
-        "Relevant Coursework: Data Structures, Algorithms, Database Systems, Software Engineering"
+        "Co-op program participant",
+        "Relevant Coursework: Data Structures, Algorithms, Database Systems, Software Engineering, Computer Architecture",
+        "Montreal, QC, Canada"
       ],
-      skills: ["Java", "Python", "C++", "Data Structures", "Algorithms"],
+      skills: ["Java", "Python", "C++", "Data Structures", "Algorithms", "Computer Architecture", "Software Engineering"],
       status: "current"
     },
     {
       id: 2,
       title: "High School Diploma",
-      institution: "High School Name",
+      institution: "SAIS (Sharjah American International School), Sharjah, UAE",
       period: "2017 - 2021",
-      description: "Graduated with honors, maintaining strong academic performance while participating in various extracurricular activities.",
+      description: "Graduated from SAIS in Sharjah, UAE, maintaining strong academic performance while participating in various extracurricular activities.",
       achievements: [
-        "Valedictorian",
-        "National Honor Society Member",
-        "Math Club President"
+        "Strong academic performance",
+        "Participated in various school activities",
+        "Mathematics and Science focus"
       ],
-      skills: ["Mathematics", "Science", "Leadership"],
+      skills: ["Mathematics", "Science", "Leadership", "International Education"],
       status: "completed"
     }
   ]
@@ -38,44 +38,46 @@ const Experiences = () => {
   const workExperience = [
     {
       id: 1,
-      title: "Freelance Web Developer",
+      title: "Freelance Developer",
       company: "Self-Employed",
       period: "2022 - Present",
-      description: "Developing custom websites and web applications for local businesses and startups.",
+      description: "Working on various web development projects and personal applications to build experience and skills.",
       achievements: [
-        "Built 15+ responsive websites using React and Node.js",
-        "Improved client website performance by 40% on average",
-        "Maintained 100% client satisfaction rate"
+        "Developed multiple web applications using React",
+        "Worked on full-stack projects and API development",
+        "Gained experience with modern web technologies"
       ],
-      skills: ["React", "Node.js", "MongoDB", "JavaScript", "HTML/CSS"],
+      skills: ["React", "MongoDB", "JavaScript", "HTML/CSS"],
       status: "current"
     },
     {
       id: 2,
-      title: "Teaching Assistant",
-      company: "University Computer Science Department",
-      period: "2023 - Present",
-      description: "Assisting professors in teaching introductory programming courses and helping students with coding assignments.",
+      title: "Software Developer & Electrical Engineer",
+      company: "Space Concordia - Robotics Division",
+      period: "2023 - 2025",
+      description: "Working on robotics projects for space exploration. Developed publisher-subscriber software architecture and contributed to Mars rover firmware development alongside a team of experts.",
       achievements: [
-        "Mentored 50+ students in programming fundamentals",
-        "Improved student pass rate by 15%",
-        "Developed supplementary learning materials"
+        "Developed publisher-subscriber program architecture for robotics software",
+        "Worked on Mars rover basic firmware with expert team",
+        "Collaborated on space robotics hardware and software integration",
+        "Contributed to real-time communication systems"
       ],
-      skills: ["Java", "Python", "Teaching", "Mentoring", "Problem Solving"],
+      skills: ["Python", "C++", "ROS (Robot Operating System)", "Firmware Development", "Team Collaboration", "Space Robotics"],
       status: "current"
     },
     {
       id: 3,
-      title: "Summer Intern",
-      company: "Local Tech Startup",
-      period: "Summer 2023",
-      description: "Worked as a software development intern, contributing to the company's main web application.",
+      title: "Computer Engineering Student",
+      company: "Concordia University",
+      period: "2021 - Present",
+      description: "Studying Computer Engineering with focus on software development, hardware systems, and robotics. Completed coursework in programming, algorithms, and engineering fundamentals.",
       achievements: [
-        "Implemented new user authentication system",
-        "Reduced application load time by 30%",
-        "Collaborated with senior developers on feature development"
+        "Completed core programming courses (Java, Python, C++)",
+        "Studied data structures and algorithms",
+        "Worked on engineering design projects",
+        "Participated in robotics and space engineering projects"
       ],
-      skills: ["React", "Express.js", "PostgreSQL", "Git", "Agile"],
+      skills: ["Java", "Python", "C++", "Data Structures", "Algorithms", "Engineering Design"],
       status: "completed"
     }
   ]
@@ -86,7 +88,7 @@ const Experiences = () => {
       title: "E-Commerce Platform",
       period: "2023",
       description: "Full-stack e-commerce application with user authentication, payment processing, and inventory management.",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe API"],
+      technologies: ["React", "MongoDB", "Stripe API"],
       features: [
         "User authentication and authorization",
         "Shopping cart and checkout process",
@@ -101,7 +103,7 @@ const Experiences = () => {
       title: "Task Management App",
       period: "2023",
       description: "Collaborative task management application with real-time updates and team collaboration features.",
-      technologies: ["React", "Socket.io", "Express.js", "PostgreSQL"],
+      technologies: ["React", "Socket.io", "PostgreSQL"],
       features: [
         "Real-time task updates",
         "Team collaboration tools",

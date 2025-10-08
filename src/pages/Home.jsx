@@ -3,43 +3,8 @@ import { Link } from 'react-router-dom'
 import './Home.css'
 
 const Home = () => {
-  const featuredContent = [
-    {
-      id: 1,
-      title: "Full-Stack Development",
-      description: "Building modern web applications with React, Node.js, and cloud technologies",
-      image: "🎯",
-      category: "Skills"
-    },
-    {
-      id: 2,
-      title: "UI/UX Design",
-      description: "Creating intuitive and beautiful user experiences with modern design principles",
-      image: "🎨",
-      category: "Design"
-    },
-    {
-      id: 3,
-      title: "Data Science",
-      description: "Analyzing data to drive insights and build intelligent solutions",
-      image: "📊",
-      category: "Analytics"
-    },
-    {
-      id: 4,
-      title: "Machine Learning",
-      description: "Developing AI models and algorithms for real-world applications",
-      image: "🤖",
-      category: "AI/ML"
-    }
-  ]
+  
 
-  const achievements = [
-    { title: "Projects Completed", value: "25+", icon: "🚀" },
-    { title: "Technologies Mastered", value: "15+", icon: "⚡" },
-    { title: "Years Learning", value: "3+", icon: "📚" },
-    { title: "Happy Collaborators", value: "50+", icon: "🤝" }
-  ]
 
   return (
     <div className="home">
@@ -49,13 +14,13 @@ const Home = () => {
         <div className="gradient-overlay"></div>
         
         <div className="hero-content">
-          <h1 className="hero-title">Welcome to My Portfolio</h1>
+          <h1 className="hero-title">Samer Odeh</h1>
           <p className="hero-subtitle">
-            Aspiring Software Engineer | Full-Stack Developer | Tech Enthusiast
+            Computer Engineering Student | Developer | Problem Solver
           </p>
           <p className="hero-description">
-            Passionate about creating innovative solutions and learning new technologies. 
-            Ready to make an impact in the tech industry as an intern.
+            Building cool stuff with code. Currently studying Computer Engineering at Concordia University 
+            and always working on something interesting.
           </p>
           
           <div className="hero-buttons">
@@ -72,7 +37,6 @@ const Home = () => {
             <div className="floating-card">React</div>
             <div className="floating-card">JavaScript</div>
             <div className="floating-card">Python</div>
-            <div className="floating-card">Node.js</div>
             <div className="floating-card">MongoDB</div>
             <div className="floating-card">AWS</div>
           </div>
@@ -86,20 +50,20 @@ const Home = () => {
           <div className="about-content">
             <div className="about-text">
               <p>
-                Hi! I'm a passionate computer science student with a love for creating 
-                digital experiences that make a difference. My journey in tech began with 
-                curiosity and has evolved into a deep passion for full-stack development, 
-                data science, and emerging technologies.
+                Hey there! I'm Samer, a Computer Engineering student at Concordia University in Montreal. 
+                I got into coding because I love solving puzzles and building things that actually work. 
+                Started with some basic projects and now I'm diving deep into web development, AI, and 
+                whatever catches my interest.
               </p>
               <p>
-                I believe in continuous learning and staying up-to-date with the latest 
-                industry trends. As an aspiring intern, I'm excited to contribute to 
-                meaningful projects while growing my skills in a professional environment.
+                I'm in the co-op program, so I'm always looking for opportunities to apply what I'm learning 
+                in real-world projects. Whether it's building web apps, working on machine learning models, 
+                or just figuring out how to make code run faster, I'm always up for a challenge.
               </p>
               <div className="about-highlights">
                 <div className="highlight-item">
                   <span className="highlight-icon">🎓</span>
-                  <span>Computer Science Student</span>
+                  <span>Computer Engineering Student</span>
                 </div>
                 <div className="highlight-item">
                   <span className="highlight-icon">💻</span>
@@ -107,55 +71,25 @@ const Home = () => {
                 </div>
                 <div className="highlight-item">
                   <span className="highlight-icon">🌟</span>
-                  <span>Tech Enthusiast</span>
+                  <span>Always Learning</span>
                 </div>
               </div>
             </div>
-            <div className="about-stats">
-              <div className="stats-grid">
-                {achievements.map((achievement, index) => (
-                  <div key={index} className="stat-card">
-                    <div className="stat-icon">{achievement.icon}</div>
-                    <div className="stat-value">{achievement.value}</div>
-                    <div className="stat-title">{achievement.title}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>
 
-      {/* Featured Content Section */}
-      <section className="section featured-section">
-        <div className="container">
-          <h2 className="section-title">What I Do</h2>
-          <div className="featured-grid">
-            {featuredContent.map((item) => (
-              <div key={item.id} className="featured-card">
-                <div className="featured-image">{item.image}</div>
-                <div className="featured-category">{item.category}</div>
-                <h3 className="featured-title">{item.title}</h3>
-                <p className="featured-description">{item.description}</p>
-                <div className="featured-overlay">
-                  <Link to="/skills-projects" className="btn btn-primary">
-                    Learn More
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* Call to Action */}
       <section className="section cta-section">
         <div className="container">
           <div className="cta-content">
-            <h2>Ready to Work Together?</h2>
+            <h2>Let's Connect!</h2>
             <p>
-              I'm always excited to take on new challenges and collaborate on 
-              interesting projects. Let's create something amazing together!
+              Have an interesting project or just want to chat about code? 
+              I'm always down to talk tech or collaborate on something cool.
             </p>
             <div className="cta-buttons">
               <Link to="/contact" className="btn btn-primary btn-large">
