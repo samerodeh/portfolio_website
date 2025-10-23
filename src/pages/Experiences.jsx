@@ -9,7 +9,7 @@ const Experiences = () => {
       id: 1,
       title: "Bachelor of Computer Engineering (Co-op)",
       institution: "Concordia University, Montreal",
-      period: "2021 - 2026",
+      period: "2023 - 2028",
       description: "Pursuing a comprehensive computer engineering degree with co-op program, focusing on software engineering, hardware systems, algorithms, and data structures.",
       achievements: [
         "Co-op program participant",
