@@ -4,16 +4,13 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  background: white;
+  border-bottom: 1px solid #e9ecef;
+  transition: all 0.2s ease;
 }
 
 .navbar.scrolled {
-  background: rgba(0, 0, 0, 0.95);
-  border-bottom-color: rgba(229, 9, 20, 0.3);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-container {
@@ -23,74 +20,63 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 60px;
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
   text-decoration: none;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
   transition: all 0.3s ease;
-  position: relative;
+  padding: 8px 12px;
+  border-radius: 6px;
 }
 
 .navbar-brand:hover {
-  transform: scale(1.05);
-}
-
-.navbar-brand:hover .brand-text {
-  animation-duration: 1s;
-}
-
-.navbar-brand:hover .brand-accent {
-  animation-duration: 0.5s;
-  transform: scale(1.2);
+  color: #007bff;
+  background: rgba(0, 123, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .brand-text {
-  background: linear-gradient(135deg, #ffffff 0%, #e50914 50%, #ffffff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: textGlow 4s ease-in-out infinite alternate;
-  position: relative;
-  z-index: 2;
+  color: #333;
 }
 
 .brand-accent {
-  color: #e50914;
+  color: #007bff;
   margin-left: 2px;
-  animation: pulseDot 2s ease-in-out infinite;
-  position: relative;
-  z-index: 2;
 }
 
 .navbar-menu {
   display: flex;
-  gap: 40px;
+  gap: 30px;
   align-items: center;
 }
 
 .navbar-link {
-  color: #b3b3b3;
+  color: #666;
   text-decoration: none;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.95rem;
   position: relative;
   transition: all 0.3s ease;
-  padding: 8px 0;
+  padding: 8px 16px;
+  border-radius: 6px;
 }
 
 .navbar-link:hover {
-  color: #ffffff;
+  color: #007bff;
+  background: rgba(0, 123, 255, 0.1);
   transform: translateY(-2px);
 }
 
 .navbar-link.active {
-  color: #e50914;
+  color: #007bff;
+  font-weight: 600;
+  background: rgba(0, 123, 255, 0.1);
 }
 
 .navbar-link::after {

@@ -63,27 +63,6 @@ const Contact = () => {
     }
   ]
 
-  const socialLinks = [
-    {
-      name: "GitHub",
-      icon: "🐙",
-      url: "https://github.com/samerodeh",
-      color: "#333"
-    },
-    {
-      name: "X (Twitter)",
-      icon: "🐦",
-      url: "https://x.com/samerodehh",
-      color: "#1DA1F2"
-    },
-    {
-      name: "LinkedIn",
-      icon: "💼",
-      url: "https://www.linkedin.com/in/samer-odeh-1265b1343/",
-      color: "#0077B5"
-    }
-  ]
-
   return (
     <div className="contact">
       {/* Hero Section */}
@@ -194,9 +173,8 @@ const Contact = () => {
               </form>
             </div>
 
-            {/* Contact Info & Social */}
+            {/* Contact Info */}
             <div className="contact-info-section">
-              {/* Contact Information */}
               <div className="contact-info">
                 <h3 className="info-title">Contact Information</h3>
                 <div className="info-list">
@@ -216,37 +194,6 @@ const Contact = () => {
                     </div>
                   ))}
                 </div>
-              </div>
-
-              {/* Social Links */}
-              <div className="social-section">
-                <h3 className="social-title">Follow Me</h3>
-                <div className="social-links">
-                  {socialLinks.map((social, index) => (
-                    <a
-                      key={index}
-                      href={social.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="social-link"
-                      style={{ '--social-color': social.color }}
-                    >
-                      <span className="social-icon">{social.icon}</span>
-                      <span className="social-name">{social.name}</span>
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              {/* Availability Status */}
-              <div className="availability">
-                <div className="status-indicator">
-                  <div className="status-dot available"></div>
-                  <span className="status-text">Available for opportunities</span>
-                </div>
-                <p className="availability-note">
-                  Open to internships, freelance work, or just cool projects to collaborate on.
-                </p>
               </div>
             </div>
           </div>

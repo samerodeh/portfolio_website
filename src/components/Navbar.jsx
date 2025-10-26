@@ -16,20 +16,22 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const handleBrandClick = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
+
   const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/experiences', label: 'Experiences' },
-    { path: '/skills-projects', label: 'Skills & Projects' },
-    { path: '/contact', label: 'Contact' }
+    { path: '/', label: 'Resume' }
   ]
 
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
-        <Link to="/" className="navbar-brand">
-          <span className="brand-text">Portfolio</span>
-          <span className="brand-accent">.</span>
-          <div className="brand-divider"></div>
+        <Link to="/" className="navbar-brand" onClick={handleBrandClick}>
+          <span className="brand-text">Samer Odeh</span>
         </Link>
 
         {/* Desktop Navigation */}
