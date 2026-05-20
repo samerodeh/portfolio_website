@@ -34,35 +34,53 @@ const Home = () => {
       }
     }
   }, [])
+
   const experiences = [
     {
       id: 1,
-      title: "Software Developer",
-      company: "Space Concordia",
-      location: "Montreal, QC",
-      period: "Sep. 2025 – Present",
-      description: "Working on robotics projects for space exploration, focusing on rover communication systems and firmware development.",
+      title: "Founder & Full-Stack Engineer",
+      company: "Odeh Software Consulting",
+      location: "Remote",
+      period: "Jan. 2026 – Present",
+      description: "Founded and operate a software consulting practice delivering custom AI-powered mobile applications for local restaurants and small businesses across Montreal.",
       achievements: [
-        "Created a publisher-subscriber program in Python and C++ for rover communication",
-        "Programmed microcontrollers and wrote low-level firmware for Robotics Division subsystems"
+        "Architected and built a reusable full-stack platform using React Native, TypeScript, and FastAPI to serve 5 local restaurant and small business clients",
+        "Delivered per-client customizations covering menus, ordering workflows, authentication, branding, and business-specific user experiences",
+        "Integrated REST APIs, databases, authentication systems, and third-party services to ship production-ready cross-platform applications",
+        "Automated ordering, reservations, and customer support workflows, improving operational efficiency for each client"
       ],
-      skills: ["Python", "C++", "Microcontrollers", "Firmware Development", "Robotics", "Communication Systems"],
+      skills: ["React Native", "TypeScript", "FastAPI", "REST APIs", "Authentication", "Mobile Development"],
       status: "current"
     },
     {
       id: 2,
+      title: "Robotics Team Member",
+      company: "Space Concordia",
+      location: "Montreal, QC",
+      period: "Sep. 2025 – Jan. 2026",
+      description: "Contributed to the Robotics Division, developing software architecture and autonomous systems for space exploration rover platforms.",
+      achievements: [
+        "Learned Linux, ROS2, and robotic software architecture through team mentorship",
+        "Built and simulated an autonomous robot independently using ROS2 and Gazebo",
+        "Gained hands-on experience with publisher/subscriber communication patterns in Python and C++"
+      ],
+      skills: ["Python", "C++", "ROS2", "Gazebo", "Linux", "Robotics"],
+      status: "completed"
+    },
+    {
+      id: 3,
       title: "Team Member – Formula Student Competition",
       company: "IEEE Concordia",
       location: "Montreal, QC",
       period: "Oct. 2025 – Nov. 2025",
-      description: "Collaborated with a team to design and build a Formula One-style race car from scratch, integrating mechanical, electrical, and software systems.",
+      description: "Collaborated with a multidisciplinary team to design, build, and compete with a Formula One-style race car, integrating mechanical, electrical, and embedded software systems.",
       achievements: [
-        "Collaborated with a team to design and build a Formula One-style race car from scratch",
-        "Integrated mechanical, electrical, and software systems (chassis, controls, embedded electronics)",
-        "Implemented wireless motor control on ESP32 using PWM with an L298N driver for DC motors, including telemetry and control endpoints",
-        "Competed in an inter-university event, applying engineering design, teamwork, and problem-solving"
+        "Collaborated with a multidisciplinary team to design and build a small Formula One-style race car",
+        "Integrated mechanical, electrical, and software systems including controls and embedded electronics",
+        "Implemented wireless motor control on ESP32 using PWM with an L298N driver, adding telemetry and remote control endpoints",
+        "Applied engineering design, teamwork, and problem-solving skills under competition constraints"
       ],
-      skills: ["ESP32", "PWM", "Motor Control", "Embedded Systems", "Team Collaboration", "Engineering Design"],
+      skills: ["ESP32", "PWM", "Motor Control", "Embedded Systems", "C++", "Engineering Design"],
       status: "completed"
     }
   ]
@@ -70,15 +88,14 @@ const Home = () => {
   const education = [
     {
       id: 1,
-      title: "Computer Engineering Student",
+      title: "Bachelor of Engineering – Computer Engineering",
       company: "Concordia University",
       location: "Montreal, QC, Canada",
-      period: "2023 - 2028",
-      description: "Pursuing a comprehensive computer engineering degree with co-op program, focusing on software engineering, hardware systems, algorithms, and data structures.",
+      period: "2023 – Expected Sep. 2028",
+      description: "Pursuing a Bachelor of Engineering in Computer Engineering with a focus on software systems, hardware architecture, algorithms, and data structures.",
       achievements: [
         "Co-op program participant",
-        "Relevant Coursework: Data Structures, Algorithms, Database Systems, Software Engineering, Computer Architecture",
-        "Montreal, QC, Canada"
+        "Relevant coursework: Data Structures, Algorithms, Database Systems, Software Engineering, Computer Architecture"
       ],
       skills: ["Java", "Python", "C++", "Data Structures", "Algorithms", "Computer Architecture", "Software Engineering"],
       status: "current"
@@ -88,15 +105,13 @@ const Home = () => {
   const projects = [
     {
       id: 1,
-      title: "Autonomous Vehicle",
-      description: "Built a small autonomous ground vehicle for an engineering physical challenge, performing mapping, localization, and navigation using ROS 2, SLAM, Gazebo, and the Nav2 stack.",
-      technologies: ["ROS 2", "SLAM", "Gazebo", "Nav2", "Raspberry Pi", "Arduino", "Fusion"],
+      title: "Sufra",
+      description: "A full-stack AI-powered restaurant chatbot built with React Native (Expo) and FastAPI, integrating a multi-agent LLM system with RAG via ChromaDB for context-aware responses and semantic menu search.",
+      technologies: ["React Native", "Expo", "FastAPI", "Python", "TypeScript", "SQLite", "ChromaDB", "Groq"],
       features: [
-        "Built a small autonomous ground vehicle for an engineering physical challenge",
-        "Performed mapping, localization, and navigation using ROS 2, SLAM, Gazebo, and the Nav2 stack",
-        "Hardware architecture involved Raspberry Pi (perception/planning) and Arduino (real-time motor control, PWM/encoders) with sensor fusion",
-        "Modeled mounts/enclosures in Fusion and fabricated prototypes via 3D printing",
-        "Currently extending the platform into an autonomous vacuum prototype (coverage planning, obstacle avoidance)"
+        "Built a full-stack AI-powered restaurant chatbot using React Native (Expo) and FastAPI",
+        "Integrated a multi-agent LLM system with RAG via ChromaDB for context-aware responses and semantic menu search",
+        "Designed modular order, menu, dietary, and reservation agents with intent routing, integrating SQLite databases for authentication and order tracking"
       ],
       github: "https://github.com/samerodeh/autonomous_vehicle",
       status: "completed"
@@ -104,44 +119,38 @@ const Home = () => {
     {
       id: 2,
       title: "Facelytics",
-      description: "Built a full-stack web application with a FastAPI REST API and a React frontend, featuring facial recognition capabilities and GitHub OAuth integration.",
+      description: "A full-stack web application with a FastAPI REST API and React frontend, featuring a fine-tuned CNN for facial embedding generation and comparison, backed by GitHub OAuth and async background job processing.",
       technologies: ["Python", "FastAPI", "React", "PostgreSQL", "Docker", "Supabase", "Celery", "Redis"],
       features: [
-        "Built a full-stack web application with a FastAPI REST API and a React frontend",
-        "Fine-tuned a CNN to generate facial embeddings and compare two faces",
-        "Implemented GitHub OAuth for user repository data access",
-        "Used Celery + Redis for background jobs (e.g., report generation, notifications)"
+        "Built a full-stack web app (FastAPI REST API + React frontend) and fine-tuned a CNN to generate facial embeddings for face comparison",
+        "Implemented GitHub OAuth and used Celery + Redis for background jobs including report generation and notifications",
+        "Containerized the full application stack with Docker and deployed with Supabase for managed database hosting"
       ],
       github: "https://github.com/samerodeh/facelytics",
       status: "completed"
     },
     {
       id: 3,
-      title: "Hank's Café Chatbot",
-      description: "Developed a mobile-first React Native application with Expo Router, featuring an intelligent chatbot using OpenAI with Retrieval-Augmented Generation (RAG).",
-      technologies: ["React Native", "TypeScript", "Firebase", "Pinecone", "OpenAI"],
+      title: "Distributed URL Shortener",
+      description: "A scalable URL shortening service inspired by Bitly, supporting custom aliases, analytics, and expiration links — built with a focus on production-grade system design.",
+      technologies: ["Python", "PostgreSQL", "Redis", "Docker", "REST API"],
       features: [
-        "Developed a mobile-first React Native application with Expo Router",
-        "Designed RESTful API endpoints in FastAPI for chatbot communication",
-        "Built an intelligent chatbot using OpenAI with Retrieval-Augmented Generation (RAG)",
-        "Integrated a vector database with Pinecone for semantic search and product recommendations",
-        "Applied prompt engineering to improve model response quality and consistency",
-        "Created responsive UI components with TypeScript and NativeWind"
+        "Designed and built a scalable URL shortening service supporting custom aliases, analytics, and expiration links",
+        "Implemented caching with Redis, persistent storage with PostgreSQL, and rate limiting for high request throughput",
+        "Containerized services using Docker and documented API endpoints with production-style system design considerations"
       ],
-      github: "https://github.com/samerodeh/hanks_cafe_chatbot",
+      github: "https://github.com/samerodeh/neural_network_scratch",
       status: "completed"
     },
     {
       id: 4,
       title: "Neural Network from Scratch",
-      description: "Implemented a fully connected feedforward neural network from scratch without deep learning frameworks, trained and tested on the MNIST dataset.",
+      description: "A fully connected feedforward neural network implemented from the ground up without deep learning frameworks, trained and evaluated on the MNIST dataset.",
       technologies: ["Python", "NumPy", "Matplotlib"],
       features: [
         "Implemented a fully connected feedforward neural network from scratch without deep learning frameworks",
         "Coded forward propagation, backpropagation, and gradient descent using only NumPy",
-        "Applied ReLU and softmax activations with cross-entropy loss for multi-class classification",
-        "Trained and tested the network on the MNIST dataset, achieving strong accuracy",
-        "Visualized training performance using Matplotlib (loss curves and accuracy plots)"
+        "Applied ReLU and softmax activations with cross-entropy loss; visualized training performance using Matplotlib"
       ],
       github: "https://github.com/samerodeh/neural_network_scratch",
       status: "completed"
@@ -152,8 +161,8 @@ const Home = () => {
     {
       icon: "📧",
       title: "Email",
-      value: "samer.odeh592@outlook.com",
-      link: "mailto:samer.odeh592@outlook.com"
+      value: "samerodeh.dev@gmail.com",
+      link: "mailto:samerodeh.dev@gmail.com"
     },
     {
       icon: "📱",
@@ -170,8 +179,8 @@ const Home = () => {
     {
       icon: "💼",
       title: "LinkedIn",
-      value: "linkedin.com/in/samer-odeh-1265b1343/",
-      link: "https://www.linkedin.com/in/samer-odeh-1265b1343/"
+      value: "linkedin.com/in/samer-odeh",
+      link: "https://www.linkedin.com/in/samer-odeh"
     }
   ]
 
@@ -181,13 +190,13 @@ const Home = () => {
       <section className="hero-section">
         <div className="container">
         <div className="hero-content">
-            <p className="hero-subtitle fade-in-up">Computer Engineering Student | Developer</p>
+            <p className="hero-subtitle fade-in-up">Full-Stack Engineer & Computer Engineering Student</p>
             <p className="hero-description fade-in-up animate-delay-1">
-            Building cool stuff with code. Currently studying Computer Engineering at Concordia University 
-            and always working on something interesting.
-          </p>
+              I build production-ready software — from AI-powered mobile apps to embedded robotics systems.
+              Currently studying Computer Engineering at Concordia University and running my own software consulting practice.
+            </p>
             <p className="hero-quote fade-in-up animate-delay-2">
-              "Developers, developers, developers!" - Steve Ballmer
+              "Developers, developers, developers!" – Steve Ballmer
             </p>
           </div>
         </div>
@@ -321,7 +330,7 @@ const Home = () => {
                   <p className="experience-description">{edu.description}</p>
                   
                   <div className="achievements">
-                    <h4>Achievements:</h4>
+                    <h4>Highlights:</h4>
                     <ul>
                       {edu.achievements.map((achievement, idx) => (
                         <li key={idx}>{achievement}</li>
