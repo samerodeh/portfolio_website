@@ -5,49 +5,64 @@ const Experiences = () => {
   const experiences = [
     {
       id: 1,
-      title: "Computer Engineering Student",
+      title: "Bachelor of Engineering – Computer Engineering",
       company: "Concordia University",
       location: "Montreal, QC, Canada",
-      period: "2023 - 2028",
-      description: "Pursuing a comprehensive computer engineering degree with co-op program, focusing on software engineering, hardware systems, algorithms, and data structures.",
+      period: "2023 – Expected Sep. 2028",
+      description: "Pursuing a Bachelor of Engineering in Computer Engineering with a focus on software systems, hardware architecture, algorithms, and data structures.",
       achievements: [
         "Co-op program participant",
-        "Relevant Coursework: Data Structures, Algorithms, Database Systems, Software Engineering, Computer Architecture",
-        "Montreal, QC, Canada"
+        "Relevant coursework: Data Structures, Algorithms, Database Systems, Software Engineering, Computer Architecture"
       ],
       skills: ["Java", "Python", "C++", "Data Structures", "Algorithms", "Computer Architecture", "Software Engineering"],
       status: "current"
     },
     {
       id: 2,
-      title: "Software Developer & Electrical Engineer",
-      company: "Space Concordia - Robotics Division",
-      location: "Montreal, QC, Canada",
-      period: "2023 - 2025",
-      description: "Working on robotics projects for space exploration. Developed publisher-subscriber software architecture and contributed to Mars rover firmware development alongside a team of experts.",
+      title: "Founder & Full-Stack Engineer",
+      company: "Odeh Software Consulting",
+      location: "Remote",
+      period: "Jan. 2026 – Present",
+      description: "Founded and operate a software consulting practice delivering custom AI-powered mobile applications for local restaurants and small businesses across Montreal.",
       achievements: [
-        "Developed publisher-subscriber program architecture for robotics software",
-        "Worked on Mars rover basic firmware with expert team",
-        "Collaborated on space robotics hardware and software integration",
-        "Contributed to real-time communication systems"
+        "Architected and built a reusable full-stack platform using React Native, TypeScript, and FastAPI to serve 5 local restaurant and small business clients",
+        "Delivered per-client customizations covering menus, ordering workflows, authentication, branding, and business-specific user experiences",
+        "Integrated REST APIs, databases, authentication systems, and third-party services to ship production-ready cross-platform applications",
+        "Automated ordering, reservations, and customer support workflows, improving operational efficiency for each client"
       ],
-      skills: ["Python", "C++", "ROS (Robot Operating System)", "Firmware Development", "Team Collaboration", "Space Robotics"],
+      skills: ["React Native", "TypeScript", "FastAPI", "REST APIs", "Authentication", "Mobile Development"],
       status: "current"
     },
     {
       id: 3,
-      title: "Freelance Developer",
-      company: "Self-Employed",
+      title: "Robotics Team Member",
+      company: "Space Concordia – Robotics Division",
       location: "Montreal, QC, Canada",
-      period: "2022 - Present",
-      description: "Working on various web development projects and personal applications to build experience and skills.",
+      period: "Sep. 2025 – Jan. 2026",
+      description: "Contributed to the Robotics Division, developing software architecture and autonomous systems for space exploration rover platforms.",
       achievements: [
-        "Developed multiple web applications using React",
-        "Worked on full-stack projects and API development",
-        "Gained experience with modern web technologies"
+        "Learned Linux, ROS2, and robotic software architecture through team mentorship",
+        "Built and simulated an autonomous robot independently using ROS2 and Gazebo",
+        "Gained hands-on experience with publisher/subscriber communication patterns in Python and C++"
       ],
-      skills: ["React", "MongoDB", "JavaScript", "HTML/CSS"],
-      status: "current"
+      skills: ["Python", "C++", "ROS2", "Gazebo", "Linux", "Robotics"],
+      status: "completed"
+    },
+    {
+      id: 4,
+      title: "Team Member – Formula Student Competition",
+      company: "IEEE Concordia",
+      location: "Montreal, QC, Canada",
+      period: "Oct. 2025 – Nov. 2025",
+      description: "Collaborated with a multidisciplinary team to design, build, and compete with a Formula One-style race car, integrating mechanical, electrical, and embedded software systems.",
+      achievements: [
+        "Collaborated with a multidisciplinary team to design and build a small Formula One-style race car",
+        "Integrated mechanical, electrical, and software systems including controls and embedded electronics",
+        "Implemented wireless motor control on ESP32 using PWM with an L298N driver, adding telemetry and remote control endpoints",
+        "Applied engineering design, teamwork, and problem-solving skills under competition constraints"
+      ],
+      skills: ["ESP32", "PWM", "Motor Control", "Embedded Systems", "C++", "Engineering Design"],
+      status: "completed"
     }
   ]
 
@@ -58,7 +73,7 @@ const Experiences = () => {
         <div className="container">
           <h1 className="page-title">Experience</h1>
           <p className="page-subtitle">
-            My journey in computer engineering and software development
+            My journey in software engineering, embedded systems, and computer engineering
           </p>
         </div>
       </section>
