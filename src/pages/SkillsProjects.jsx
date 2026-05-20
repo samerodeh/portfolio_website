@@ -5,48 +5,41 @@ const SkillsProjects = () => {
   const projects = [
     {
       id: 1,
-      title: "Face Detection App",
-      description: "Built a face detection app using Python and OpenCV. It can detect faces in images and videos, plus some basic recognition features.",
-      technologies: ["Python", "OpenCV", "Machine Learning", "Computer Vision", "Jupyter Notebook"],
+      title: "Sufra",
+      description: "A full-stack AI-powered restaurant chatbot built with React Native (Expo) and FastAPI, integrating a multi-agent LLM system with RAG via ChromaDB for context-aware responses and semantic menu search.",
+      technologies: ["React Native", "Expo", "FastAPI", "Python", "TypeScript", "SQLite", "ChromaDB", "Groq"],
       features: [
-        "Detects faces in photos and videos",
-        "Works with webcam input",
-        "Simple GUI interface",
-        "Can identify multiple faces at once",
-        "Built with Python and OpenCV"
+        "Built a full-stack AI-powered restaurant chatbot using React Native (Expo) and FastAPI",
+        "Integrated a multi-agent LLM system with RAG via ChromaDB for context-aware responses and semantic menu search",
+        "Designed modular order, menu, dietary, and reservation agents with intent routing, integrating SQLite databases for authentication and order tracking"
       ],
-      github: "https://github.com/samerodeh/face_detection_app",
+      github: "https://github.com/samerodeh/sufra",
       status: "completed"
     },
     {
       id: 2,
-      title: "Autonomous Vacuum Robot",
-      description: "Developed an autonomous vacuum cleaning robot using ROS2, SLAM, Nav2, and Gazebo simulation. The robot can navigate autonomously, map environments, and perform cleaning tasks.",
-      technologies: ["ROS2", "SLAM", "Nav2", "Python", "C++", "Gazebo", "Linux", "Robotics"],
+      title: "Facelytics",
+      description: "A full-stack web application with a FastAPI REST API and React frontend, featuring a fine-tuned CNN for facial embedding generation and comparison, backed by GitHub OAuth and async background job processing.",
+      technologies: ["Python", "FastAPI", "React", "PostgreSQL", "Docker", "Supabase", "Celery", "Redis"],
       features: [
-        "Autonomous navigation using Nav2",
-        "Simultaneous Localization and Mapping (SLAM)",
-        "Gazebo simulation environment",
-        "Real-time path planning and obstacle avoidance",
-        "Modular ROS2 architecture with Python and C++ nodes"
+        "Built a full-stack web app (FastAPI REST API + React frontend) and fine-tuned a CNN to generate facial embeddings for face comparison",
+        "Implemented GitHub OAuth and used Celery + Redis for background jobs including report generation and notifications",
+        "Containerized the full application stack with Docker and deployed with Supabase for managed database hosting"
       ],
-      github: "https://github.com/samerodeh/autonomous_vacuum",
+      github: "https://github.com/samerodeh/facelytics",
       status: "completed"
     },
     {
       id: 3,
-      title: "Hank's Cafe AI Chatbot",
-      description: "Built a sophisticated AI-powered coffee shop chatbot with multi-agent architecture, featuring React Native mobile app, Python backend with specialized AI agents, and advanced recommendation system.",
-      technologies: ["React Native", "Python", "OpenAI", "Pinecone", "Firebase", "RunPod", "Machine Learning", "RAG", "TypeScript"],
+      title: "Distributed URL Shortener",
+      description: "A scalable URL shortening service inspired by Bitly, supporting custom aliases, analytics, and expiration links — built with a focus on production-grade system design.",
+      technologies: ["Python", "PostgreSQL", "Redis", "Docker", "REST API"],
       features: [
-        "Multi-agent AI system with 5 specialized agents",
-        "React Native mobile app with real-time chat",
-        "RAG (Retrieval-Augmented Generation) for context-aware responses",
-        "Market basket analysis recommendation engine",
-        "Vector database integration with Pinecone",
-        "Cloud deployment with RunPod serverless infrastructure"
+        "Designed and built a scalable URL shortening service supporting custom aliases, analytics, and expiration links",
+        "Implemented caching with Redis, persistent storage with PostgreSQL, and rate limiting for high request throughput",
+        "Containerized services using Docker and documented API endpoints with production-style system design considerations"
       ],
-      github: "https://github.com/samerodeh/hanks_cafe_chatbot",
+      github: "https://github.com/samerodeh/distributed-url-shortener",
       status: "completed"
     }
   ]
@@ -58,7 +51,7 @@ const SkillsProjects = () => {
         <div className="container">
           <h1 className="page-title">Projects</h1>
           <p className="page-subtitle">
-            A collection of projects showcasing my development journey
+            A selection of projects spanning full-stack development, AI systems, and backend engineering
           </p>
         </div>
       </section>
