@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import {
   motion,
   MotionConfig,
@@ -9,6 +10,7 @@ import {
   useReducedMotion,
 } from 'framer-motion'
 import StarField from '../components/StarField'
+import TiltCard from '../components/TiltCard'
 import './Home.css'
 
 /* ----------------------------------------------------------------
@@ -71,21 +73,21 @@ const IcLinkedin = (p) => (
    Motion variants — orchestrated, spring-based, never linear.
 ---------------------------------------------------------------- */
 const EASE = [0.22, 1, 0.36, 1]
-const container = (stagger = 0.1, delay = 0.05) => ({
+const container = (stagger = 0.22, delay = 0.08) => ({
   hidden: {},
   show: { transition: { staggerChildren: stagger, delayChildren: delay } },
 })
 const up = {
-  hidden: { opacity: 0, y: 26 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
+  hidden: { opacity: 0, y: 32 },
+  show: { opacity: 1, y: 0, transition: { duration: 1.6, ease: EASE } },
 }
 const ruleV = {
   hidden: { scaleX: 0, opacity: 0 },
-  show: { opacity: 1, scaleX: 1, transition: { duration: 0.6, ease: EASE } },
+  show: { opacity: 1, scaleX: 1, transition: { duration: 1.0, ease: EASE } },
 }
 const railV = {
   hidden: { scaleY: 0 },
-  show: { scaleY: 1, transition: { duration: 0.9, ease: EASE } },
+  show: { scaleY: 1, transition: { duration: 1.4, ease: EASE } },
 }
 const VP = { once: true, amount: 0.2 }
 const VP_LIST = { once: true, amount: 0.12 }
@@ -115,7 +117,7 @@ const experiences = [
     bullets: [
       'Designed and implemented a high-performance file conversion engine supporting 20+ formats natively on macOS.',
       'Optimized media-processing logic to cut conversion latency by 15% across high-resolution datasets.',
-      'Managed version control with Git/GitHub — feature branches, merge-conflict resolution, and clean codebase documentation.',
+      'Managed version control with Git/GitHub: feature branches, merge-conflict resolution, and clean codebase documentation.',
       'Maintained sandboxed file-access protocols and shipped client-side release updates for the live App Store application.',
     ],
     tags: ['Swift', 'SwiftUI', 'AppKit', 'ImageIO', 'PDFKit', 'AVFoundation'],
@@ -163,7 +165,7 @@ const projects = [
     blurb: 'A facial-recognition system pairing a custom-trained CNN with vectorized embedding comparison for real-time face verification.',
     features: [
       'Custom Convolutional Neural Network (CNN) trained to parse image datasets and extract high-dimensional facial embeddings.',
-      'Vectorized math operations comparing embedding distance metrics — stable logic for real-time face verification.',
+      'Vectorized math operations comparing embedding distance metrics for stable, real-time face verification.',
     ],
     tech: ['Python', 'FastAPI', 'React', 'PostgreSQL', 'Docker', 'Supabase', 'Celery', 'Redis'],
     github: 'https://github.com/samerodeh/Facelytics',
@@ -201,7 +203,7 @@ const SectionHead = ({ eyebrow, title, children }) => (
     initial="hidden"
     whileInView="show"
     viewport={{ once: true, amount: 0.6 }}
-    variants={container(0.1)}
+    variants={container(0.22, 0.08)}
   >
     <motion.span className="eyebrow" variants={up}>{eyebrow}</motion.span>
     <motion.h2 className="section-title" variants={up}>{title}</motion.h2>
@@ -276,14 +278,12 @@ const ProjectCard = ({ p, index }) => {
    Contact card (secondary) — spring lift on hover
 ---------------------------------------------------------------- */
 const ContactCard = ({ label, value, link, Icon }) => (
-  <motion.a
+  <TiltCard
+    as="a"
     className="contact-card"
     href={link}
     {...(link.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
     variants={up}
-    whileHover={{ y: -6 }}
-    whileTap={{ scale: 0.97 }}
-    transition={{ type: 'spring', stiffness: 320, damping: 20 }}
   >
     <span className="contact-ic"><Icon className="cci" /></span>
     <span className="contact-text">
@@ -291,13 +291,21 @@ const ContactCard = ({ label, value, link, Icon }) => (
       <span className="contact-value">{value}</span>
     </span>
     <IcArrow className="ca" />
-  </motion.a>
+  </TiltCard>
 )
 
 /* ---------------------------------------------------------------- */
 
 const Home = () => {
   const [copied, setCopied] = useState(false)
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.hash === '#experience') {
+      const el = document.getElementById('experience')
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100)
+    }
+  }, [location.hash])
 
   const copyEmail = () => {
     // immediate feedback; clipboard write runs in the background (never block the UI)
@@ -317,18 +325,19 @@ const Home = () => {
         {/* ===== HERO (front page — preserved, motion entrance) ===== */}
         <section className="hero-section">
           <StarField />
+          <div className="hero-bottom-fade" aria-hidden="true" />
           <div className="container">
             <motion.div
               className="hero-content"
               initial="hidden"
               animate="show"
-              variants={container(0.13, 0.1)}
+              variants={container(0.22, 0.08)}
             >
               <motion.p className="hero-subtitle" variants={up}>
                 Full-Stack Engineer &amp; Computer Engineering Student
               </motion.p>
               <motion.p className="hero-description" variants={up}>
-                I build production-ready software — from AI-powered mobile apps to embedded robotics systems.
+                I build production-ready software, from AI-powered mobile apps to embedded robotics systems.
                 Currently studying Computer Engineering at Concordia University and running my own software consulting practice.
               </motion.p>
               <motion.p className="hero-quote" variants={up}>
@@ -341,26 +350,26 @@ const Home = () => {
         {/* ===== EXPERIENCE ===== */}
         <section className="section" id="experience">
           <div className="container">
-            <SectionHead eyebrow="// 01 — Career" title="Experience" />
+            <SectionHead eyebrow="// 01 · Career" title="Experience" />
 
             <motion.ol
               className="timeline"
               initial="hidden"
               whileInView="show"
               viewport={VP_LIST}
-              variants={container(0.14, 0.1)}
+              variants={container(0.22, 0.08)}
             >
               <motion.span className="tl-rail" variants={railV} aria-hidden="true" />
               {experiences.map((exp) => (
                 <motion.li className="tl-item" key={exp.company} variants={up}>
                   <span className={`tl-node ${exp.current ? 'is-current' : ''}`} aria-hidden="true" />
-                  <article className="tl-card">
+                  <TiltCard as="article" className="tl-card">
                     <div className="tl-top">
                       <div className="tl-headings">
                         <h3 className="tl-role">{exp.role}</h3>
                         <p className="tl-company">
                           {exp.company}
-                          {exp.clients && <span className="tl-clients"> — {exp.clients}</span>}
+                          {exp.clients && <span className="tl-clients"> · {exp.clients}</span>}
                         </p>
                       </div>
                       {exp.current && (
@@ -380,7 +389,7 @@ const Home = () => {
                     <div className="chips">
                       {exp.tags.map((t) => <span className="chip" key={t}>{t}</span>)}
                     </div>
-                  </article>
+                  </TiltCard>
                 </motion.li>
               ))}
             </motion.ol>
@@ -390,13 +399,13 @@ const Home = () => {
         {/* ===== PROJECTS ===== */}
         <section className="section" id="projects">
           <div className="container">
-            <SectionHead eyebrow="// 02 — Selected work" title="Projects" />
+            <SectionHead eyebrow="// 02 · Selected work" title="Projects" />
             <motion.div
               className="projects"
               initial="hidden"
               whileInView="show"
               viewport={VP_LIST}
-              variants={container(0.16, 0.08)}
+              variants={container(0.22, 0.08)}
             >
               {projects.map((p, i) => <ProjectCard key={p.title} p={p} index={i} />)}
             </motion.div>
@@ -406,13 +415,13 @@ const Home = () => {
         {/* ===== TECHNICAL SKILLS ===== */}
         <section className="section" id="skills">
           <div className="container">
-            <SectionHead eyebrow="// 03 — Toolkit" title="Technical Skills" />
+            <SectionHead eyebrow="// 03 · Toolkit" title="Technical Skills" />
             <motion.div
               className="skills"
               initial="hidden"
               whileInView="show"
               viewport={VP_LIST}
-              variants={container(0.1, 0.05)}
+              variants={container(0.22, 0.08)}
             >
               {skillGroups.map((g) => (
                 <motion.div className="skill-group" key={g.label} variants={up}>
@@ -429,15 +438,13 @@ const Home = () => {
         {/* ===== EDUCATION ===== */}
         <section className="section" id="education">
           <div className="container">
-            <SectionHead eyebrow="// 04 — Background" title="Education" />
-            <motion.div
+            <SectionHead eyebrow="// 04 · Background" title="Education" />
+            <TiltCard
               className="edu"
               initial="hidden"
               whileInView="show"
               viewport={VP}
               variants={up}
-              whileHover={{ y: -4 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 22 }}
             >
               <span className="edu-icon" aria-hidden="true"><IcCap className="ei" /></span>
               <div className="edu-body">
@@ -448,14 +455,14 @@ const Home = () => {
                 <span className="meta"><IcPin className="mi" />{education.location}</span>
                 <span className="meta"><IcCalendar className="mi" />{education.period}</span>
               </div>
-            </motion.div>
+            </TiltCard>
           </div>
         </section>
 
         {/* ===== CONTACT ===== */}
         <section className="section section-contact" id="contact">
           <div className="container">
-            <SectionHead eyebrow="// 05 — Say hello" title="Get in touch">
+            <SectionHead eyebrow="// 05 · Say hello" title="Get in touch">
               <motion.p className="section-lede" variants={up}>
                 Open to internships and collaboration — the fastest way to reach me is email,
                 and I usually reply within a day.
@@ -470,15 +477,10 @@ const Home = () => {
               initial="hidden"
               whileInView="show"
               viewport={VP_LIST}
-              variants={container(0.12, 0.05)}
+              variants={container(0.22, 0.08)}
             >
               {/* Primary — email with copy-to-clipboard */}
-              <motion.div
-                className="email-card"
-                variants={up}
-                whileHover={{ y: -4 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-              >
+              <TiltCard className="email-card" variants={up}>
                 <div className="email-main">
                   <span className="contact-ic big"><IcMail className="cci" /></span>
                   <div className="contact-text">
@@ -515,7 +517,7 @@ const Home = () => {
                     Write me <IcArrow className="cbi" />
                   </motion.a>
                 </div>
-              </motion.div>
+              </TiltCard>
 
               {/* Secondary — phone, linkedin, github */}
               <div className="contact-row">

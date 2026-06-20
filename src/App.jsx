@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import ScrollToTop from './components/ScrollToTop'
+import ParticleNet from './components/ParticleNet'
 import Home from './pages/Home'
 import Experiences from './pages/Experiences'
 import SkillsProjects from './pages/SkillsProjects'
@@ -12,6 +13,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
+      <ParticleNet />
       <div className="app">
         <Navbar />
         <main className="main-content">

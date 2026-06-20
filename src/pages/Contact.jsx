@@ -1,5 +1,18 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
+import TiltCard from '../components/TiltCard'
 import './Contact.css'
+
+const EASE = [0.22, 1, 0.36, 1]
+const up = {
+  hidden: { opacity: 0, y: 32 },
+  show: { opacity: 1, y: 0, transition: { duration: 1.6, ease: EASE } },
+}
+const container = (stagger = 0.22, delay = 0.08) => ({
+  hidden: {},
+  show: { transition: { staggerChildren: stagger, delayChildren: delay } },
+})
+const VP = { once: true, amount: 0.15 }
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,74 +26,56 @@ const Contact = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    setFormData(prev => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false)
       setSubmitStatus('success')
       setFormData({ name: '', email: '', subject: '', message: '' })
-      
-      // Reset status after 3 seconds
-      setTimeout(() => {
-        setSubmitStatus(null)
-      }, 3000)
+      setTimeout(() => setSubmitStatus(null), 3000)
     }, 2000)
   }
 
   const contactInfo = [
-    {
-      icon: "📧",
-      title: "Email",
-      value: "samer.odeh592@outlook.com",
-      link: "mailto:samer.odeh592@outlook.com"
-    },
-    {
-      icon: "📱",
-      title: "Phone",
-      value: "+1 (514) 246-4894",
-      link: "tel:+15142464894"
-    },
-    {
-      icon: "📍",
-      title: "Location",
-      value: "Montreal, QC, Canada",
-      link: null
-    },
-    {
-      icon: "💼",
-      title: "LinkedIn",
-      value: "linkedin.com/in/samer-odeh-1265b1343/",
-      link: "https://www.linkedin.com/in/samer-odeh-1265b1343/"
-    }
+    { icon: "📧", title: "Email", value: "samer.odeh592@outlook.com", link: "mailto:samer.odeh592@outlook.com" },
+    { icon: "📱", title: "Phone", value: "+1 (514) 246-4894", link: "tel:+15142464894" },
+    { icon: "📍", title: "Location", value: "Montreal, QC, Canada", link: null },
+    { icon: "💼", title: "LinkedIn", value: "linkedin.com/in/samer-odeh-1265b1343/", link: "https://www.linkedin.com/in/samer-odeh-1265b1343/" }
   ]
 
   return (
     <div className="contact">
       {/* Hero Section */}
-      <section className="contact-hero">
+      <motion.section
+        className="contact-hero"
+        initial="hidden"
+        animate="show"
+        variants={container(0.22, 0.08)}
+      >
         <div className="container">
-          <h1 className="page-title">Get In Touch</h1>
-          <p className="page-subtitle">
+          <motion.h1 className="page-title" variants={up}>Get In Touch</motion.h1>
+          <motion.p className="page-subtitle" variants={up}>
             Ready to collaborate? Let's discuss opportunities and create something amazing together
-          </p>
+          </motion.p>
         </div>
-      </section>
+      </motion.section>
 
       {/* Contact Content */}
       <section className="section">
         <div className="container">
-          <div className="contact-content">
+          <motion.div
+            className="contact-content"
+            initial="hidden"
+            whileInView="show"
+            viewport={VP}
+            variants={container(0.22, 0.08)}
+          >
             {/* Contact Form */}
-            <div className="contact-form-section">
+            <TiltCard className="contact-form-section" variants={up}>
               <div className="form-header">
                 <h2 className="form-title">Drop me a line</h2>
                 <p className="form-subtitle">
@@ -143,7 +138,7 @@ const Contact = () => {
                     placeholder="Tell me about your project, opportunity, or just say hello!"
                     rows="6"
                     required
-                  ></textarea>
+                  />
                 </div>
 
                 <button
@@ -153,7 +148,7 @@ const Contact = () => {
                 >
                   {isSubmitting ? (
                     <>
-                      <span className="spinner"></span>
+                      <span className="spinner" />
                       Sending...
                     </>
                   ) : (
@@ -171,10 +166,10 @@ const Contact = () => {
                   </div>
                 )}
               </form>
-            </div>
+            </TiltCard>
 
             {/* Contact Info */}
-            <div className="contact-info-section">
+            <TiltCard className="contact-info-section" variants={up}>
               <div className="contact-info">
                 <h3 className="info-title">Contact Information</h3>
                 <div className="info-list">
@@ -184,9 +179,7 @@ const Contact = () => {
                       <div className="info-content">
                         <span className="info-label">{info.title}</span>
                         {info.link ? (
-                          <a href={info.link} className="info-value link">
-                            {info.value}
-                          </a>
+                          <a href={info.link} className="info-value link">{info.value}</a>
                         ) : (
                           <span className="info-value">{info.value}</span>
                         )}
@@ -195,8 +188,8 @@ const Contact = () => {
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
+            </TiltCard>
+          </motion.div>
         </div>
       </section>
     </div>

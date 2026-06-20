@@ -4,35 +4,35 @@
    ============================================================ */
 :root {
   /* Ink / text */
-  --ink: #0a0a0b;
-  --ink-soft: #1b1b1f;
-  --text: #3f3f46;       /* zinc-700 — body */
-  --muted: #71717a;      /* zinc-500 — meta */
-  --faint: #a1a1aa;      /* zinc-400 — decorative */
+  --ink: #f0f0f0;
+  --ink-soft: #d0d0d0;
+  --text: rgba(255, 255, 255, 0.68);
+  --muted: rgba(255, 255, 255, 0.42);
+  --faint: rgba(255, 255, 255, 0.22);
 
   /* Surfaces */
-  --bg: #f7f7f5;         /* warm near-white page */
-  --surface: #ffffff;
-  --surface-2: #f4f4f5;  /* zinc-100 — chips, insets */
-  --border: #e6e6e9;
-  --border-strong: #d6d6db;
+  --bg: #080808;
+  --surface: #111111;
+  --surface-2: #1c1c1c;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.13);
 
   /* Signature red */
   --accent: #e50914;
-  --accent-deep: #b80710; /* darker — text/links on white (AA) */
-  --accent-2: #ff5a5f;    /* coral — gradient partner */
-  --accent-wash: rgba(229, 9, 20, 0.08);
+  --accent-deep: #ff4a52;   /* brighter for dark-bg readability */
+  --accent-2: #ff6b70;
+  --accent-wash: rgba(229, 9, 20, 0.12);
 
   /* Type */
   --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
   --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
-  /* Elevation — soft, layered (Soft UI Evolution) */
-  --shadow-sm: 0 1px 2px rgba(10, 10, 11, 0.04), 0 1px 3px rgba(10, 10, 11, 0.06);
-  --shadow-md: 0 4px 12px rgba(10, 10, 11, 0.05), 0 12px 28px rgba(10, 10, 11, 0.06);
-  --shadow-lg: 0 8px 24px rgba(10, 10, 11, 0.07), 0 24px 56px rgba(10, 10, 11, 0.10);
-  --shadow-accent: 0 12px 32px rgba(229, 9, 20, 0.16);
+  /* Elevation — deeper for dark */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 12px 28px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.55), 0 24px 56px rgba(0, 0, 0, 0.65);
+  --shadow-accent: 0 12px 32px rgba(229, 9, 20, 0.22);
 
   /* Geometry */
   --radius: 16px;
@@ -52,11 +52,12 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  background: #080808;
 }
 
 body {
   font-family: var(--font-body);
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
   line-height: 1.65;
   overflow-x: hidden;
@@ -80,12 +81,12 @@ body {
   background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
+  background: rgba(255, 255, 255, 0.15);
   border-radius: 999px;
   border: 2px solid var(--bg);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--faint);
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* Keyboard focus — visible, on-brand */
@@ -93,4 +94,18 @@ body {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* Shared tilt-card glare overlay — used by TiltCard component */
+.tilt-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 0;
+}
+*:hover > .tilt-glare {
+  opacity: 1;
 }

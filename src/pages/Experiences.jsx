@@ -1,5 +1,18 @@
 import React from 'react'
+import { motion } from 'framer-motion'
+import TiltCard from '../components/TiltCard'
 import './Experiences.css'
+
+const EASE = [0.22, 1, 0.36, 1]
+const up = {
+  hidden: { opacity: 0, y: 32 },
+  show: { opacity: 1, y: 0, transition: { duration: 1.6, ease: EASE } },
+}
+const container = (stagger = 0.22, delay = 0.08) => ({
+  hidden: {},
+  show: { transition: { staggerChildren: stagger, delayChildren: delay } },
+})
+const VP = { once: true, amount: 0.15 }
 
 const Experiences = () => {
   const experiences = [
@@ -69,21 +82,32 @@ const Experiences = () => {
   return (
     <div className="experiences">
       {/* Hero Section */}
-      <section className="experiences-hero">
+      <motion.section
+        className="experiences-hero"
+        initial="hidden"
+        animate="show"
+        variants={container(0.22, 0.08)}
+      >
         <div className="container">
-          <h1 className="page-title">Experience</h1>
-          <p className="page-subtitle">
+          <motion.h1 className="page-title" variants={up}>Experience</motion.h1>
+          <motion.p className="page-subtitle" variants={up}>
             My journey in software engineering, embedded systems, and computer engineering
-          </p>
+          </motion.p>
         </div>
-      </section>
+      </motion.section>
 
       {/* Experiences List */}
       <section className="section">
         <div className="container">
-          <div className="experiences-list">
-            {experiences.map((exp, index) => (
-              <div key={exp.id} className="experience-item">
+          <motion.div
+            className="experiences-list"
+            initial="hidden"
+            whileInView="show"
+            viewport={VP}
+            variants={container(0.22, 0.08)}
+          >
+            {experiences.map((exp) => (
+              <TiltCard key={exp.id} className="experience-item" variants={up}>
                 <div className="experience-header">
                   <h3 className="experience-title">{exp.title}</h3>
                   <div className="experience-meta">
@@ -92,10 +116,10 @@ const Experiences = () => {
                     <span className="period">{exp.period}</span>
                   </div>
                 </div>
-                
+
                 <div className="experience-content">
                   <p className="experience-description">{exp.description}</p>
-                  
+
                   <div className="achievements">
                     <h4>Achievements:</h4>
                     <ul>
@@ -106,7 +130,7 @@ const Experiences = () => {
                   </div>
 
                   <div className="skills">
-                    <h4>Technologies & Skills:</h4>
+                    <h4>Technologies &amp; Skills:</h4>
                     <div className="skills-list">
                       {exp.skills.map((skill, idx) => (
                         <span key={idx} className="skill-tag">{skill}</span>
@@ -114,9 +138,9 @@ const Experiences = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </TiltCard>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

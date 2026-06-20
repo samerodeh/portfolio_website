@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PostToolUse\",\"additionalContext\":\"A file was just edited. Remember to update CLAUDE.md if the change reflects a new pattern, component, design decision, or convention that future Claude sessions should know about.\"}}'",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

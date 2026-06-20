@@ -1,31 +1,34 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './Navbar.css'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
-
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const handleBrandClick = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  const navItems = [
-    { path: '/', label: 'Resume' }
-  ]
+  const handleResumeClick = (e) => {
+    e.preventDefault()
+    setIsMobileMenuOpen(false)
+    if (location.pathname === '/') {
+      document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      navigate('/#experience')
+    }
+  }
 
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
@@ -36,15 +39,13 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className="navbar-menu">
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`navbar-link ${location.pathname === item.path ? 'active' : ''}`}
-            >
-              {item.label}
-            </Link>
-          ))}
+          <a
+            href="/#experience"
+            className={`navbar-link ${location.pathname === '/' ? 'active' : ''}`}
+            onClick={handleResumeClick}
+          >
+            Resume
+          </a>
         </div>
 
         {/* Mobile Menu Button */}
@@ -59,16 +60,13 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
-          {navItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`mobile-nav-link ${location.pathname === item.path ? 'active' : ''}`}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+          <a
+            href="/#experience"
+            className={`mobile-nav-link ${location.pathname === '/' ? 'active' : ''}`}
+            onClick={handleResumeClick}
+          >
+            Resume
+          </a>
         </div>
       </div>
     </nav>
