@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Samer Odeh's personal portfolio website — a single-page resume/portfolio built with React and Vite. It showcases his experience, projects, technical skills, and contact info. Deployed on Netlify at `https://jovial-mermaid-852a8b.netlify.app`.
+Samer Odeh's personal portfolio website — a single-page resume/portfolio built with React and Vite. It showcases his experience, projects, technical skills, and contact info. Auto-deploys to Vercel (project `samerodeh.dev`) on every push to `main`; live at `https://samerodeh.dev`.
 
 ## Tech Stack
 
@@ -140,4 +140,4 @@ All resume content (`experiences`, `certifications`, `projects`, `skillGroups`, 
 
 ## Deployment
 
-Netlify auto-deploys from the main branch. The `dist/` folder is the build output. A `netlify.toml` or redirect config may be needed for client-side routing (React Router).
+Vercel auto-deploys from the `main` branch (project `samerodeh.dev`, production domain `https://samerodeh.dev`). Vercel runs `npm run build` itself, but `dist/` is also committed to the repo. The commit status on `main` reports the Vercel deploy result.
