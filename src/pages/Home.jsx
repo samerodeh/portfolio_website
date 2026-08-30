@@ -43,6 +43,11 @@ const IcCap = (p) => (
     <path d="M22 10v6M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
   </svg>
 )
+const IcAward = (p) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" {...p}>
+    <path d="M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" /><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11" />
+  </svg>
+)
 const IcArrow = (p) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
     <path d="M7 17 17 7M7 7h10v10" />
@@ -103,10 +108,16 @@ const experiences = [
     period: 'Jan 2026 — Present',
     current: true,
     bullets: [
-      'Co-founded LocalGo, a full-stack food & groceries delivery platform connecting downtown Montreal consumers with small local businesses.',
-      'Optimized routing algorithms and order-dispatching mechanics, reducing average delivery times by 15% for consumers across downtown Montreal.',
+      "Built LocalGo's backend, a FastAPI service on Postgres for ordering, dispatch, and delivery tracking.",
+      'Engineered full-stack features, building the mobile interfaces in TypeScript with React Native and Expo.',
+      'Shipped mobile builds through Expo / EAS with over-the-air updates, staged release channels, and crash reporting.',
+      'Provisioned the whole stack as code with Terraform and Ansible, plus zero-downtime deploys and rollback.',
+      'Deployed on Docker and Kubernetes with Prometheus monitoring, Redis caching, and RabbitMQ queues.',
+      'Set up GitHub Actions CI/CD: lint, type checks, and unit and integration tests with Pytest on every push.',
+      'Self-hosted Postgres with automated backups, tested restores, and a read replica ready for failover.',
+      'Tuned routing and order-dispatch logic, cutting average delivery times by 15% across downtown Montreal.',
     ],
-    tags: ['Full-Stack', 'Routing Algorithms', 'Real-Time Dispatch', 'Product'],
+    tags: ['FastAPI', 'PostgreSQL', 'React Native', 'Expo', 'Terraform', 'Ansible', 'Docker', 'Kubernetes', 'Prometheus', 'Redis', 'RabbitMQ', 'GitHub Actions'],
   },
   {
     role: 'Software Engineering Intern',
@@ -115,24 +126,25 @@ const experiences = [
     period: 'Feb 2026 — May 2026',
     current: false,
     bullets: [
-      'Designed and implemented a high-performance file conversion engine supporting 20+ formats natively on macOS.',
+      'Built a fully offline file-conversion feature for ClipTex, an OCR app that lifts text out of any screenshot.',
+      'Designed and implemented a high-performance file-conversion engine supporting 20+ formats natively on macOS.',
       'Optimized media-processing logic to cut conversion latency by 15% across high-resolution datasets.',
-      'Managed version control with Git/GitHub: feature branches, merge-conflict resolution, and clean codebase documentation.',
-      'Maintained sandboxed file-access protocols and shipped client-side release updates for the live App Store application.',
+      'Wrote QA and unit-test coverage for every new function in the file-conversions class using OOP.',
+      'Maintained sandboxed file access and security practices for the live App Store release.',
     ],
     tags: ['Swift', 'SwiftUI', 'AppKit', 'ImageIO', 'PDFKit', 'AVFoundation'],
   },
   {
-    role: 'Software Engineer Team Member',
+    role: 'Robotics Software Member',
     company: 'Space Concordia',
     location: 'Montreal, QC',
     period: 'Sep 2025 — Jan 2026',
     current: false,
     bullets: [
       'Designed, built, and simulated a fully autonomous robot independently using ROS2 and Gazebo.',
-      'Developed publisher/subscriber communication systems in Python and C++.',
+      'Developed publisher/subscriber communication systems in Python and C/C++.',
     ],
-    tags: ['ROS2', 'Gazebo', 'Python', 'C++'],
+    tags: ['ROS2', 'Gazebo', 'Python', 'C / C++'],
   },
   {
     role: 'Full-Stack Software Engineer',
@@ -142,30 +154,51 @@ const experiences = [
     period: '2025 — Present',
     current: true,
     bullets: [
-      'Designed and built custom websites and web applications for companies and businesses across a range of industries.',
+      'Designed and built custom apps and web applications for a range of companies and businesses.',
     ],
-    tags: ['React', 'FastAPI', 'TypeScript', 'Web Apps'],
+    tags: ['React', 'FastAPI', 'TypeScript', 'Expo'],
   },
+]
+
+const certifications = [
+  { name: 'Cisco CCNA', status: 'In progress' },
+  { name: 'CKAD: Certified Kubernetes Application Developer', status: 'In progress' },
 ]
 
 const projects = [
   {
     title: 'Sufra AI',
-    blurb: 'A full-stack, Groq-powered restaurant assistant built on a multi-agent LLM architecture with RAG-based semantic retrieval over ChromaDB.',
+    kind: 'Mobile App + Backend',
+    blurb: 'A multi-agent restaurant assistant spanning a React Native app and a FastAPI backend service.',
     features: [
-      'Multi-agent LLM system with RAG-based semantic retrieval over ChromaDB for context-aware responses.',
-      'Intelligent agents for ordering, reservations, and dietary constraints with optimized intent routing and authentication.',
-      'Cut agent decision latency via prompt caching, Chain-of-Thought reasoning pipelines, and dynamic resource-routing optimization.',
+      'Multi-agent LLM assistant that routes each message to a specialist agent for ordering, reservations, or dietary intent.',
+      'RAG-based semantic retrieval over the menu with ChromaDB for context-aware answers.',
+      'FastAPI backend with SQLite for authentication and order tracking, with React Native and Expo clients.',
     ],
     tech: ['React Native', 'Expo', 'FastAPI', 'Python', 'TypeScript', 'SQLite', 'ChromaDB', 'Groq'],
-    github: 'https://github.com/samerodeh/falafel_fullstack_chatbot_application',
+    github: 'https://github.com/samerodeh/SufraAI',
+  },
+  {
+    title: 'Jarvis',
+    kind: 'Home Automation System',
+    blurb: 'A voice-controlled home automation system built on a multi-agent LLM workflow on Google Gemini.',
+    features: [
+      'Multi-agent LLM workflow on Google Gemini that turns natural voice commands into home actions.',
+      'Embedded C/C++ firmware for ESP32 nodes and custom PCBs, handling UART / I2C and SG90 servo control.',
+      'Bridges agent output to hardware in real time, translating language intent into low-latency servo and relay commands.',
+      'Deployed across 4+ rooms for voice-controlled switching of lights and heaters on resource-constrained nodes.',
+    ],
+    tech: ['Python', 'Google Gemini', 'ESP32', 'Embedded C/C++', 'PCB Design', 'UART / I2C'],
+    github: 'https://github.com/samerodeh/full_home_automation_system',
   },
   {
     title: 'Facelytics',
-    blurb: 'A facial-recognition system pairing a custom-trained CNN with vectorized embedding comparison for real-time face verification.',
+    kind: 'Web Application',
+    blurb: 'A CNN-based web app that compares faces using vector embeddings for real-time verification.',
     features: [
-      'Custom Convolutional Neural Network (CNN) trained to parse image datasets and extract high-dimensional facial embeddings.',
-      'Vectorized math operations comparing embedding distance metrics for stable, real-time face verification.',
+      'Custom-trained CNN that extracts high-dimensional facial embeddings from image datasets.',
+      'Vectorized distance metrics comparing embeddings for stable, real-time face verification.',
+      'FastAPI REST API with a React frontend, GitHub OAuth, and Celery + Redis background jobs, containerized with Docker.',
     ],
     tech: ['Python', 'FastAPI', 'React', 'PostgreSQL', 'Docker', 'Supabase', 'Celery', 'Redis'],
     github: 'https://github.com/samerodeh/Facelytics',
@@ -173,15 +206,18 @@ const projects = [
 ]
 
 const skillGroups = [
-  { label: 'Languages', items: ['Python', 'C / C++', 'TypeScript', 'JavaScript', 'Java', 'SQL', 'Bash'] },
-  { label: 'Frameworks & Tools', items: ['React', 'React Native', 'FastAPI', 'SQLAlchemy', 'Prisma', 'Flask', 'Docker', 'ROS2', 'Gazebo', 'Git / GitHub', 'Linux'] },
+  { label: 'Languages', items: ['Python', 'C / C++', 'TypeScript', 'JavaScript', 'Java', 'Node.js', 'Swift', 'SQL', 'Bash'] },
+  { label: 'Cloud & DevOps', items: ['AWS', 'Azure', 'GCP', 'Docker', 'Kubernetes', 'CI/CD (GitHub Actions)', 'Terraform', 'Ansible', 'Prometheus', 'Datadog', 'Confluence', 'Linux'] },
+  { label: 'Frameworks', items: ['React', 'React Native', 'FastAPI', 'SQLAlchemy', 'Prisma', 'Flask'] },
   { label: 'Databases', items: ['PostgreSQL', 'SQLite', 'Redis', 'ChromaDB', 'Supabase'] },
-  { label: 'Data & Analytics', items: ['pandas', 'NumPy', 'Matplotlib', 'Power BI', 'Power Apps', 'Power Automate'] },
-  { label: 'Concepts', items: ['System Design', 'Relational DB Design', 'LLMs', 'RAG', 'CNNs', 'Optimization', 'REST APIs'] },
+  { label: 'Machine Learning & AI', items: ['Fine-Tuning', 'scikit-learn', 'TensorFlow', 'PyTorch', 'Keras', 'LLMs', 'RAG', 'CNNs'] },
+  { label: 'Data & Visualization', items: ['NumPy', 'pandas', 'SciPy', 'Matplotlib', 'Seaborn', 'Plotly', 'Power BI'] },
+  { label: 'Concepts', items: ['System Design', 'DevSecOps', 'Prompt Engineering', 'Optimization', 'REST APIs', 'Data Structures', 'Algorithms'] },
+  { label: 'Tooling', items: ['Cursor', 'Herdr (tmux)', 'vim / neovim', 'Claude Code CLI', 'Copilot CLI', 'Kiro CLI'] },
 ]
 
 const education = {
-  degree: 'Bachelor of Engineering, Computer Engineering',
+  degree: 'Bachelor of Engineering in Computer Engineering',
   school: 'Concordia University',
   location: 'Montreal, QC, Canada',
   period: 'Expected Sep 2029',
@@ -246,7 +282,10 @@ const ProjectCard = ({ p, index }) => {
       {!reduce && <motion.span className="proj-glare" style={{ background: glare }} aria-hidden="true" />}
       <span className="proj-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
       <div className="proj-head">
-        <h3 className="proj-title">{p.title}</h3>
+        <div className="proj-headings">
+          <h3 className="proj-title">{p.title}</h3>
+          {p.kind && <span className="proj-kind">{p.kind}</span>}
+        </div>
         <motion.a
           className="proj-icon"
           href={p.github}
@@ -337,8 +376,9 @@ const Home = () => {
                 Full-Stack Engineer &amp; Computer Engineering Student
               </motion.p>
               <motion.p className="hero-description" variants={up}>
-                I build production-ready software, from AI-powered mobile apps to embedded robotics systems.
-                Currently studying Computer Engineering at Concordia University and running my own software consulting practice.
+                I build production software end to end, from FastAPI backends and Kubernetes infrastructure
+                to React Native apps and multi-agent AI systems. Co-Founder and CPO of LocalGo, freelance
+                full-stack engineer, and Computer Engineering student at Concordia University.
               </motion.p>
               <motion.p className="hero-quote" variants={up}>
                 "Developers, developers, developers!" – Steve Ballmer
@@ -396,10 +436,34 @@ const Home = () => {
           </div>
         </section>
 
+        {/* ===== CERTIFICATIONS ===== */}
+        <section className="section" id="certifications">
+          <div className="container">
+            <SectionHead eyebrow="// 02 · Credentials" title="Certifications" />
+            <motion.div
+              className="certs"
+              initial="hidden"
+              whileInView="show"
+              viewport={VP_LIST}
+              variants={container(0.22, 0.08)}
+            >
+              {certifications.map((c) => (
+                <motion.div className="cert" key={c.name} variants={up}>
+                  <span className="cert-icon" aria-hidden="true"><IcAward className="ci" /></span>
+                  <div className="cert-body">
+                    <h3 className="cert-name">{c.name}</h3>
+                    <span className="cert-status">{c.status}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
         {/* ===== PROJECTS ===== */}
         <section className="section" id="projects">
           <div className="container">
-            <SectionHead eyebrow="// 02 · Selected work" title="Projects" />
+            <SectionHead eyebrow="// 03 · Selected work" title="Projects" />
             <motion.div
               className="projects"
               initial="hidden"
@@ -415,7 +479,7 @@ const Home = () => {
         {/* ===== TECHNICAL SKILLS ===== */}
         <section className="section" id="skills">
           <div className="container">
-            <SectionHead eyebrow="// 03 · Toolkit" title="Technical Skills" />
+            <SectionHead eyebrow="// 04 · Toolkit" title="Technical Skills" />
             <motion.div
               className="skills"
               initial="hidden"
@@ -438,7 +502,7 @@ const Home = () => {
         {/* ===== EDUCATION ===== */}
         <section className="section" id="education">
           <div className="container">
-            <SectionHead eyebrow="// 04 · Background" title="Education" />
+            <SectionHead eyebrow="// 05 · Background" title="Education" />
             <TiltCard
               className="edu"
               initial="hidden"
@@ -462,7 +526,7 @@ const Home = () => {
         {/* ===== CONTACT ===== */}
         <section className="section section-contact" id="contact">
           <div className="container">
-            <SectionHead eyebrow="// 05 · Say hello" title="Get in touch">
+            <SectionHead eyebrow="// 06 · Say hello" title="Get in touch">
               <motion.p className="section-lede" variants={up}>
                 Open to internships and collaboration — the fastest way to reach me is email,
                 and I usually reply within a day.

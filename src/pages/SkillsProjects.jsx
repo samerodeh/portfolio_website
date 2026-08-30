@@ -18,41 +18,41 @@ const SkillsProjects = () => {
   const projects = [
     {
       id: 1,
-      title: "Sufra",
-      description: "A full-stack AI-powered restaurant chatbot built with React Native (Expo) and FastAPI, integrating a multi-agent LLM system with RAG via ChromaDB for context-aware responses and semantic menu search.",
+      title: "Sufra AI",
+      description: "A multi-agent restaurant assistant spanning a React Native app and a FastAPI backend, with RAG-based semantic retrieval over the menu via ChromaDB.",
       technologies: ["React Native", "Expo", "FastAPI", "Python", "TypeScript", "SQLite", "ChromaDB", "Groq"],
       features: [
-        "Built a full-stack AI-powered restaurant chatbot using React Native (Expo) and FastAPI",
-        "Integrated a multi-agent LLM system with RAG via ChromaDB for context-aware responses and semantic menu search",
-        "Designed modular order, menu, dietary, and reservation agents with intent routing, integrating SQLite databases for authentication and order tracking"
+        "Multi-agent LLM assistant that routes each message to a specialist agent for ordering, reservations, or dietary intent",
+        "RAG-based semantic retrieval over the menu with ChromaDB for context-aware answers",
+        "FastAPI backend with SQLite for authentication and order tracking, with React Native and Expo clients"
       ],
-      github: "https://github.com/samerodeh/sufra",
+      github: "https://github.com/samerodeh/SufraAI",
       status: "completed"
     },
     {
       id: 2,
-      title: "Facelytics",
-      description: "A full-stack web application with a FastAPI REST API and React frontend, featuring a fine-tuned CNN for facial embedding generation and comparison, backed by GitHub OAuth and async background job processing.",
-      technologies: ["Python", "FastAPI", "React", "PostgreSQL", "Docker", "Supabase", "Celery", "Redis"],
+      title: "Jarvis",
+      description: "A voice-controlled home automation system built on a multi-agent LLM workflow on Google Gemini, bridging language intent to ESP32 hardware in real time.",
+      technologies: ["Python", "Google Gemini", "ESP32", "Embedded C/C++", "PCB Design", "UART / I2C"],
       features: [
-        "Built a full-stack web app (FastAPI REST API + React frontend) and fine-tuned a CNN to generate facial embeddings for face comparison",
-        "Implemented GitHub OAuth and used Celery + Redis for background jobs including report generation and notifications",
-        "Containerized the full application stack with Docker and deployed with Supabase for managed database hosting"
+        "Multi-agent LLM workflow on Google Gemini that turns natural voice commands into home actions",
+        "Embedded C/C++ firmware for ESP32 nodes and custom PCBs, handling UART / I2C and SG90 servo control",
+        "Deployed across 4+ rooms for voice-controlled switching of lights and heaters on resource-constrained nodes"
       ],
-      github: "https://github.com/samerodeh/facelytics",
+      github: "https://github.com/samerodeh/full_home_automation_system",
       status: "completed"
     },
     {
       id: 3,
-      title: "Distributed URL Shortener",
-      description: "A scalable URL shortening service inspired by Bitly, supporting custom aliases, analytics, and expiration links — built with a focus on production-grade system design.",
-      technologies: ["Python", "PostgreSQL", "Redis", "Docker", "REST API"],
+      title: "Facelytics",
+      description: "A CNN-based web app that compares faces using vector embeddings for real-time verification, with a FastAPI REST API, React frontend, GitHub OAuth, and async background jobs.",
+      technologies: ["Python", "FastAPI", "React", "PostgreSQL", "Docker", "Supabase", "Celery", "Redis"],
       features: [
-        "Designed and built a scalable URL shortening service supporting custom aliases, analytics, and expiration links",
-        "Implemented caching with Redis, persistent storage with PostgreSQL, and rate limiting for high request throughput",
-        "Containerized services using Docker and documented API endpoints with production-style system design considerations"
+        "Custom-trained CNN that extracts high-dimensional facial embeddings from image datasets",
+        "Vectorized distance metrics comparing embeddings for stable, real-time face verification",
+        "FastAPI REST API with a React frontend, GitHub OAuth, and Celery + Redis background jobs, containerized with Docker"
       ],
-      github: "https://github.com/samerodeh/distributed-url-shortener",
+      github: "https://github.com/samerodeh/Facelytics",
       status: "completed"
     }
   ]

@@ -41,7 +41,7 @@ const Contact = () => {
   }
 
   const contactInfo = [
-    { icon: "📧", title: "Email", value: "samer.odeh592@outlook.com", link: "mailto:samer.odeh592@outlook.com" },
+    { icon: "📧", title: "Email", value: "samerodeh.dev@gmail.com", link: "mailto:samerodeh.dev@gmail.com" },
     { icon: "📱", title: "Phone", value: "+1 (514) 246-4894", link: "tel:+15142464894" },
     { icon: "📍", title: "Location", value: "Montreal, QC, Canada", link: null },
     { icon: "💼", title: "LinkedIn", value: "linkedin.com/in/samer-odeh-1265b1343/", link: "https://www.linkedin.com/in/samer-odeh-1265b1343/" }
@@ -107,7 +107,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       className="form-input"
-                      placeholder="samer.odeh592@outlook.com"
+                      placeholder="samerodeh.dev@gmail.com"
                       required
                     />
                   </div>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-jecSitemap: https://jovial-mermaid-852a8b.netlify.app/sitemap.xml
+Sitemap: https://jovial-mermaid-852a8b.netlify.app/sitemap.xml
