@@ -18,64 +18,80 @@ const Experiences = () => {
   const experiences = [
     {
       id: 1,
-      title: "Bachelor of Engineering – Computer Engineering",
+      title: "Bachelor of Engineering in Computer Engineering",
       company: "Concordia University",
       location: "Montreal, QC, Canada",
-      period: "2023 – Expected Sep. 2028",
-      description: "Pursuing a Bachelor of Engineering in Computer Engineering with a focus on software systems, hardware architecture, algorithms, and data structures.",
+      period: "Expected Sep. 2029",
+      description: "Studying Computer Engineering with a focus on software systems, computer architecture, algorithms, and data structures.",
       achievements: [
-        "Co-op program participant",
-        "Relevant coursework: Data Structures, Algorithms, Database Systems, Software Engineering, Computer Architecture"
+        "Relevant coursework: Data Structures, Algorithms, Object-Oriented Programming, Computer Architecture, Software Engineering"
       ],
-      skills: ["Java", "Python", "C++", "Data Structures", "Algorithms", "Computer Architecture", "Software Engineering"],
+      skills: ["Java", "Python", "C / C++", "Data Structures", "Algorithms", "Computer Architecture"],
       status: "current"
     },
     {
       id: 2,
-      title: "Founder & Full-Stack Engineer",
-      company: "Odeh Software Consulting",
+      title: "Co-Founder & Chief Product Officer",
+      company: "LocalGo",
       location: "Remote",
       period: "Jan. 2026 – Present",
-      description: "Founded and operate a software consulting practice delivering custom AI-powered mobile applications for local restaurants and small businesses across Montreal.",
+      description: "Co-founded LocalGo, a full-stack food and groceries delivery platform, and own its backend, infrastructure, and mobile engineering.",
       achievements: [
-        "Architected and built a reusable full-stack platform using React Native, TypeScript, and FastAPI to serve 5 local restaurant and small business clients",
-        "Delivered per-client customizations covering menus, ordering workflows, authentication, branding, and business-specific user experiences",
-        "Integrated REST APIs, databases, authentication systems, and third-party services to ship production-ready cross-platform applications",
-        "Automated ordering, reservations, and customer support workflows, improving operational efficiency for each client"
+        "Built LocalGo's backend, a FastAPI service on Postgres for ordering, dispatch, and delivery tracking",
+        "Engineered full-stack features and built the mobile interfaces in TypeScript with React Native and Expo",
+        "Shipped mobile builds through Expo / EAS with over-the-air updates, staged release channels, and crash reporting",
+        "Provisioned the whole stack as code with Terraform and Ansible, plus zero-downtime deploys and rollback",
+        "Deployed on Docker and Kubernetes with Prometheus monitoring, Redis caching, and RabbitMQ queues",
+        "Set up GitHub Actions CI/CD with lint, type checks, and unit and integration tests using Pytest",
+        "Self-hosted Postgres with automated backups, tested restores, and a read replica ready for failover",
+        "Tuned routing and order-dispatch logic, cutting average delivery times by 15% across downtown Montreal"
       ],
-      skills: ["React Native", "TypeScript", "FastAPI", "REST APIs", "Authentication", "Mobile Development"],
+      skills: ["FastAPI", "PostgreSQL", "React Native", "Expo", "Terraform", "Ansible", "Docker", "Kubernetes", "Prometheus", "Redis", "RabbitMQ", "GitHub Actions"],
       status: "current"
     },
     {
       id: 3,
-      title: "Robotics Team Member",
-      company: "Space Concordia – Robotics Division",
-      location: "Montreal, QC, Canada",
-      period: "Sep. 2025 – Jan. 2026",
-      description: "Contributed to the Robotics Division, developing software architecture and autonomous systems for space exploration rover platforms.",
+      title: "Software Engineering Intern",
+      company: "CopyPasta",
+      location: "Remote",
+      period: "Feb. 2026 – May 2026",
+      description: "Worked on ClipTex, an OCR app that lifts text out of any screenshot, shipped on the macOS App Store.",
       achievements: [
-        "Learned Linux, ROS2, and robotic software architecture through team mentorship",
-        "Built and simulated an autonomous robot independently using ROS2 and Gazebo",
-        "Gained hands-on experience with publisher/subscriber communication patterns in Python and C++"
+        "Built a fully offline file-conversion feature for ClipTex",
+        "Designed and implemented a high-performance file-conversion engine supporting 20+ formats natively on macOS",
+        "Optimized media-processing logic to cut conversion latency by 15% across high-resolution datasets",
+        "Wrote QA and unit-test coverage for every new function in the file-conversions class using OOP",
+        "Maintained sandboxed file access and security practices for the live App Store release"
       ],
-      skills: ["Python", "C++", "ROS2", "Gazebo", "Linux", "Robotics"],
+      skills: ["Swift", "SwiftUI", "AppKit", "ImageIO", "PDFKit", "AVFoundation"],
       status: "completed"
     },
     {
       id: 4,
-      title: "Team Member – Formula Student Competition",
-      company: "IEEE Concordia",
+      title: "Robotics Software Member",
+      company: "Space Concordia",
       location: "Montreal, QC, Canada",
-      period: "Oct. 2025 – Nov. 2025",
-      description: "Collaborated with a multidisciplinary team to design, build, and compete with a Formula One-style race car, integrating mechanical, electrical, and embedded software systems.",
+      period: "Sep. 2025 – Jan. 2026",
+      description: "Built autonomous-robot software on the Space Concordia team using ROS2 and Gazebo.",
       achievements: [
-        "Collaborated with a multidisciplinary team to design and build a small Formula One-style race car",
-        "Integrated mechanical, electrical, and software systems including controls and embedded electronics",
-        "Implemented wireless motor control on ESP32 using PWM with an L298N driver, adding telemetry and remote control endpoints",
-        "Applied engineering design, teamwork, and problem-solving skills under competition constraints"
+        "Designed, built, and simulated a fully autonomous robot independently using ROS2 and Gazebo",
+        "Developed publisher/subscriber communication systems in Python and C/C++"
       ],
-      skills: ["ESP32", "PWM", "Motor Control", "Embedded Systems", "C++", "Engineering Design"],
+      skills: ["Python", "C / C++", "ROS2", "Gazebo", "Linux", "Robotics"],
       status: "completed"
+    },
+    {
+      id: 5,
+      title: "Full-Stack Software Engineer",
+      company: "Freelancer",
+      location: "Remote",
+      period: "2025 – Present",
+      description: "Freelance full-stack engineering for PureBranded, Singer Haley, and STB.",
+      achievements: [
+        "Designed and built custom apps and web applications for a range of companies and businesses"
+      ],
+      skills: ["React", "FastAPI", "TypeScript", "Expo", "REST APIs"],
+      status: "current"
     }
   ]
 

@@ -134,7 +134,9 @@ npm run preview  # Serve the dist/ build locally
 
 ## Content Data
 
-All resume content (experiences, projects, skills, education) is defined as plain JS arrays/objects at the top of `src/pages/Home.jsx`. To update content, edit those data structures — no CMS or external data source.
+All resume content (`experiences`, `certifications`, `projects`, `skillGroups`, `education`, `secondaryContacts`) is defined as plain JS arrays/objects at the top of `src/pages/Home.jsx`. To update content, edit those data structures — no CMS or external data source. Source of truth for the facts is Samer's master resume (`~/.claude/skills/edit-resume/resume/master-resume.md` and the exported `~/OneDrive/Desktop/resumes/samer_resume.pdf`).
+
+`Home.jsx` is the entire live site. The `/experiences`, `/skills-projects`, and `/contact` routes in `App.jsx` still exist but are **not linked from the Navbar**; their page components carry a mirrored copy of the same content kept in sync manually.
 
 ## Deployment
 
