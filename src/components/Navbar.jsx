@@ -46,11 +46,14 @@ const Navbar = () => {
           >
             Resume
           </a>
+          <a href="/Samer-Odeh-Resume.pdf" className="navbar-link" download>Download PDF</a>
         </div>
 
         {/* Mobile Menu Button */}
         <button
           className="mobile-menu-button"
+          aria-label="Toggle navigation"
+          aria-expanded={isMobileMenuOpen}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <span></span>
@@ -67,6 +70,7 @@ const Navbar = () => {
           >
             Resume
           </a>
+          <a href="/Samer-Odeh-Resume.pdf" className="mobile-nav-link" download onClick={() => setIsMobileMenuOpen(false)}>Download PDF</a>
         </div>
       </div>
     </nav>
