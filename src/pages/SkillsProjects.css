@@ -165,3 +165,13 @@
     gap: 6px;
   }
 }
+.project-meta {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.project-footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

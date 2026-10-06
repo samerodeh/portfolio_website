@@ -11,6 +11,7 @@ import {
 } from 'framer-motion'
 import StarField from '../components/StarField'
 import TiltCard from '../components/TiltCard'
+import { experiences, projects, skillGroups, education, certifications } from '../data/resume'
 import './Home.css'
 
 /* ----------------------------------------------------------------
@@ -100,129 +101,6 @@ const VP_LIST = { once: true, amount: 0.12 }
 /* ----------------------------------------------------------------
    Data
 ---------------------------------------------------------------- */
-const experiences = [
-  {
-    role: 'Co-Founder & Chief Product Officer',
-    company: 'LocalGo',
-    location: 'Remote',
-    period: 'Jan 2026 — Present',
-    current: true,
-    bullets: [
-      "Built LocalGo's backend, a FastAPI service on Postgres for ordering, dispatch, and delivery tracking.",
-      'Engineered full-stack features, building the mobile interfaces in TypeScript with React Native and Expo.',
-      'Shipped mobile builds through Expo / EAS with over-the-air updates, staged release channels, and crash reporting.',
-      'Provisioned the whole stack as code with Terraform and Ansible, plus zero-downtime deploys and rollback.',
-      'Deployed on Docker and Kubernetes with Prometheus monitoring, Redis caching, and RabbitMQ queues.',
-      'Set up GitHub Actions CI/CD: lint, type checks, and unit and integration tests with Pytest on every push.',
-      'Self-hosted Postgres with automated backups, tested restores, and a read replica ready for failover.',
-      'Tuned routing and order-dispatch logic, cutting average delivery times by 15% across downtown Montreal.',
-    ],
-    tags: ['FastAPI', 'PostgreSQL', 'React Native', 'Expo', 'Terraform', 'Ansible', 'Docker', 'Kubernetes', 'Prometheus', 'Redis', 'RabbitMQ', 'GitHub Actions'],
-  },
-  {
-    role: 'Software Engineering Intern',
-    company: 'CopyPasta',
-    location: 'Remote',
-    period: 'Feb 2026 — May 2026',
-    current: false,
-    bullets: [
-      'Built a fully offline file-conversion feature for ClipTex, an OCR app that lifts text out of any screenshot.',
-      'Designed and implemented a high-performance file-conversion engine supporting 20+ formats natively on macOS.',
-      'Optimized media-processing logic to cut conversion latency by 15% across high-resolution datasets.',
-      'Wrote QA and unit-test coverage for every new function in the file-conversions class using OOP.',
-      'Maintained sandboxed file access and security practices for the live App Store release.',
-    ],
-    tags: ['Swift', 'SwiftUI', 'AppKit', 'ImageIO', 'PDFKit', 'AVFoundation'],
-  },
-  {
-    role: 'Robotics Software Member',
-    company: 'Space Concordia',
-    location: 'Montreal, QC',
-    period: 'Sep 2025 — Jan 2026',
-    current: false,
-    bullets: [
-      'Designed, built, and simulated a fully autonomous robot independently using ROS2 and Gazebo.',
-      'Developed publisher/subscriber communication systems in Python and C/C++.',
-    ],
-    tags: ['ROS2', 'Gazebo', 'Python', 'C / C++'],
-  },
-  {
-    role: 'Full-Stack Software Engineer',
-    company: 'Freelancer',
-    clients: 'PureBranded · Singer Haley · STB',
-    location: 'Remote',
-    period: '2025 — Present',
-    current: true,
-    bullets: [
-      'Designed and built custom apps and web applications for a range of companies and businesses.',
-    ],
-    tags: ['React', 'FastAPI', 'TypeScript', 'Expo'],
-  },
-]
-
-const certifications = [
-  { name: 'Cisco CCNA', status: 'In progress' },
-  { name: 'CKAD: Certified Kubernetes Application Developer', status: 'In progress' },
-]
-
-const projects = [
-  {
-    title: 'Sufra AI',
-    kind: 'Mobile App + Backend',
-    blurb: 'A multi-agent restaurant assistant spanning a React Native app and a FastAPI backend service.',
-    features: [
-      'Multi-agent LLM assistant that routes each message to a specialist agent for ordering, reservations, or dietary intent.',
-      'RAG-based semantic retrieval over the menu with ChromaDB for context-aware answers.',
-      'FastAPI backend with SQLite for authentication and order tracking, with React Native and Expo clients.',
-    ],
-    tech: ['React Native', 'Expo', 'FastAPI', 'Python', 'TypeScript', 'SQLite', 'ChromaDB', 'Groq'],
-    github: 'https://github.com/samerodeh/SufraAI',
-  },
-  {
-    title: 'Jarvis',
-    kind: 'Home Automation System',
-    blurb: 'A voice-controlled home automation system built on a multi-agent LLM workflow on Google Gemini.',
-    features: [
-      'Multi-agent LLM workflow on Google Gemini that turns natural voice commands into home actions.',
-      'Embedded C/C++ firmware for ESP32 nodes and custom PCBs, handling UART / I2C and SG90 servo control.',
-      'Bridges agent output to hardware in real time, translating language intent into low-latency servo and relay commands.',
-      'Deployed across 4+ rooms for voice-controlled switching of lights and heaters on resource-constrained nodes.',
-    ],
-    tech: ['Python', 'Google Gemini', 'ESP32', 'Embedded C/C++', 'PCB Design', 'UART / I2C'],
-    github: 'https://github.com/samerodeh/full_home_automation_system',
-  },
-  {
-    title: 'Facelytics',
-    kind: 'Web Application',
-    blurb: 'A CNN-based web app that compares faces using vector embeddings for real-time verification.',
-    features: [
-      'Custom-trained CNN that extracts high-dimensional facial embeddings from image datasets.',
-      'Vectorized distance metrics comparing embeddings for stable, real-time face verification.',
-      'FastAPI REST API with a React frontend, GitHub OAuth, and Celery + Redis background jobs, containerized with Docker.',
-    ],
-    tech: ['Python', 'FastAPI', 'React', 'PostgreSQL', 'Docker', 'Supabase', 'Celery', 'Redis'],
-    github: 'https://github.com/samerodeh/Facelytics',
-  },
-]
-
-const skillGroups = [
-  { label: 'Languages', items: ['Python', 'C / C++', 'TypeScript', 'JavaScript', 'Java', 'Node.js', 'Swift', 'SQL', 'Bash'] },
-  { label: 'Cloud & DevOps', items: ['AWS', 'Azure', 'GCP', 'Docker', 'Kubernetes', 'CI/CD (GitHub Actions)', 'Terraform', 'Ansible', 'Prometheus', 'Datadog', 'Confluence', 'Linux'] },
-  { label: 'Frameworks', items: ['React', 'React Native', 'FastAPI', 'SQLAlchemy', 'Prisma', 'Flask'] },
-  { label: 'Databases', items: ['PostgreSQL', 'SQLite', 'Redis', 'ChromaDB', 'Supabase'] },
-  { label: 'Machine Learning & AI', items: ['Fine-Tuning', 'scikit-learn', 'TensorFlow', 'PyTorch', 'Keras', 'LLMs', 'RAG', 'CNNs'] },
-  { label: 'Data & Visualization', items: ['NumPy', 'pandas', 'SciPy', 'Matplotlib', 'Seaborn', 'Plotly', 'Power BI'] },
-  { label: 'Concepts', items: ['System Design', 'DevSecOps', 'Prompt Engineering', 'Optimization', 'REST APIs', 'Data Structures', 'Algorithms'] },
-  { label: 'Tooling', items: ['Cursor', 'Herdr (tmux)', 'vim / neovim', 'Claude Code CLI', 'Copilot CLI', 'Kiro CLI'] },
-]
-
-const education = {
-  degree: 'Bachelor of Engineering in Computer Engineering',
-  school: 'Concordia University',
-  location: 'Montreal, QC, Canada',
-  period: 'Expected Sep 2029',
-}
-
 const EMAIL = 'samerodeh.dev@gmail.com'
 const secondaryContacts = [
   { label: 'Phone', value: '+1 (514) 246-4894', link: 'tel:+15142464894', Icon: IcPhone },
@@ -284,7 +162,7 @@ const ProjectCard = ({ p, index }) => {
       <div className="proj-head">
         <div className="proj-headings">
           <h3 className="proj-title">{p.title}</h3>
-          {p.kind && <span className="proj-kind">{p.kind}</span>}
+          {p.kind && <span className="proj-kind">{p.kind} · {p.period}</span>}
         </div>
         <motion.a
           className="proj-icon"
@@ -309,6 +187,11 @@ const ProjectCard = ({ p, index }) => {
       <a className="proj-link" href={p.github} target="_blank" rel="noopener noreferrer">
         View source <IcArrow className="la" />
       </a>
+      {p.demo && (
+        <a className="proj-link" href={p.demo} target="_blank" rel="noopener noreferrer">
+          Web application <IcArrow className="la" />
+        </a>
+      )}
     </motion.article>
   )
 }
@@ -376,9 +259,9 @@ const Home = () => {
                 Full-Stack Engineer &amp; Computer Engineering Student
               </motion.p>
               <motion.p className="hero-description" variants={up}>
-                I build production software end to end, from FastAPI backends and Kubernetes infrastructure
-                to React Native apps and multi-agent AI systems. Co-Founder and CPO of LocalGo, freelance
-                full-stack engineer, and Computer Engineering student at Concordia University.
+                I build full-stack software, from FastAPI backends and Kubernetes infrastructure
+                to React Native apps and AI prototypes. Co-Founder and Software Engineer at LocalGo,
+                freelance full-stack engineer, and Computer Engineering student at Concordia University.
               </motion.p>
               <motion.p className="hero-quote" variants={up}>
                 "Developers, developers, developers!" – Steve Ballmer
