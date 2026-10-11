@@ -186,6 +186,15 @@
 .bullets-sm li {
   font-size: 0.92rem;
 }
+.bullets strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+.tl-clients a {
+  color: var(--accent-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 
 .chips {
   display: flex;

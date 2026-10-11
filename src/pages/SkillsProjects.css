@@ -165,3 +165,4 @@
     gap: 6px;
   }
 }
+.project-features strong { color: var(--ink); font-weight: 700; }
