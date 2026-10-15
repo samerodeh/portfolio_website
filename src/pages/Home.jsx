@@ -1,507 +1,93 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion'
 import { useLocation } from 'react-router-dom'
-import {
-  motion,
-  MotionConfig,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  useMotionTemplate,
-  useReducedMotion,
-} from 'framer-motion'
-import StarField from '../components/StarField'
-import TiltCard from '../components/TiltCard'
+import HeroSculpture from '../components/HeroSculpture'
+import { Emphasized, experiences, projects } from '../resumeContent'
 import './Home.css'
-import { experiences, projects, Emphasized } from '../resumeContent'
 
-/* ----------------------------------------------------------------
-   Inline icons — Lucide-style strokes + official brand glyphs.
-   No emojis used anywhere as UI icons.
----------------------------------------------------------------- */
-const IcMail = (p) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" {...p}>
-    <rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-  </svg>
-)
-const IcPhone = (p) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" {...p}>
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
-  </svg>
-)
-const IcPin = (p) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" {...p}>
-    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" />
-  </svg>
-)
-const IcCalendar = (p) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" {...p}>
-    <rect width="18" height="18" x="3" y="4" rx="2" /><path d="M3 10h18M8 2v4M16 2v4" />
-  </svg>
-)
-const IcCap = (p) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" {...p}>
-    <path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z" />
-    <path d="M22 10v6M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
-  </svg>
-)
-const IcAward = (p) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" {...p}>
-    <path d="M12 15a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" /><path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11" />
-  </svg>
-)
-const IcArrow = (p) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
-    <path d="M7 17 17 7M7 7h10v10" />
-  </svg>
-)
-const IcCopy = (p) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" {...p}>
-    <rect width="13" height="13" x="9" y="9" rx="2" /><path d="M5 15c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h8c1.1 0 2 .9 2 2" />
-  </svg>
-)
-const IcCheck = (p) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" {...p}>
-    <path d="M20 6 9 17l-5-5" />
-  </svg>
-)
-const IcGithub = (p) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
-    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.5 11.5 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-  </svg>
-)
-const IcLinkedin = (p) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
-    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-  </svg>
-)
+const ease = [0.22, 1, 0.36, 1]
 
-/* ----------------------------------------------------------------
-   Motion variants — orchestrated, spring-based, never linear.
----------------------------------------------------------------- */
-const EASE = [0.22, 1, 0.36, 1]
-const container = (stagger = 0.22, delay = 0.08) => ({
-  hidden: {},
-  show: { transition: { staggerChildren: stagger, delayChildren: delay } },
-})
-const up = {
-  hidden: { opacity: 0, y: 32 },
-  show: { opacity: 1, y: 0, transition: { duration: 1.6, ease: EASE } },
-}
-const ruleV = {
-  hidden: { scaleX: 0, opacity: 0 },
-  show: { opacity: 1, scaleX: 1, transition: { duration: 1.0, ease: EASE } },
-}
-const railV = {
-  hidden: { scaleY: 0 },
-  show: { scaleY: 1, transition: { duration: 1.4, ease: EASE } },
-}
-const VP = { once: true, amount: 0.2 }
-const VP_LIST = { once: true, amount: 0.12 }
-
-/* ----------------------------------------------------------------
-   Data
----------------------------------------------------------------- */
-const certifications = [
-  { name: 'Cisco CCNA', status: 'In progress' },
-  { name: 'CKAD: Certified Kubernetes Application Developer', status: 'In progress' },
-]
-
-const skillGroups = [
-  { label: 'Languages', items: ['Python', 'C / C++', 'TypeScript', 'JavaScript', 'Java', 'Node.js', 'Swift', 'SQL', 'Bash'] },
-  { label: 'Cloud & DevOps', items: ['AWS', 'Azure', 'GCP', 'Docker', 'Kubernetes', 'CI/CD (GitHub Actions)', 'Terraform', 'Ansible', 'Prometheus', 'Datadog', 'Confluence', 'Linux'] },
-  { label: 'Frameworks', items: ['React', 'React Native', 'FastAPI', 'SQLAlchemy', 'Prisma', 'Flask'] },
-  { label: 'Databases', items: ['PostgreSQL', 'SQLite', 'Redis', 'ChromaDB', 'Supabase'] },
-  { label: 'Machine Learning & AI', items: ['Fine-Tuning', 'scikit-learn', 'TensorFlow', 'PyTorch', 'Keras', 'LLMs', 'RAG', 'CNNs'] },
-  { label: 'Data & Visualization', items: ['NumPy', 'pandas', 'SciPy', 'Matplotlib', 'Seaborn', 'Plotly', 'Power BI'] },
-  { label: 'Concepts', items: ['System Design', 'DevSecOps', 'Prompt Engineering', 'Optimization', 'REST APIs', 'Data Structures', 'Algorithms'] },
-  { label: 'Tooling', items: ['Cursor', 'Herdr (tmux)', 'vim / neovim', 'Claude Code CLI', 'Copilot CLI', 'Kiro CLI'] },
-]
-
-const education = {
-  degree: 'Bachelor of Engineering in Computer Engineering',
-  school: 'Concordia University',
-  location: 'Montreal, QC, Canada',
-  period: 'Expected Sep 2029',
-}
-
-const EMAIL = 'samerodeh.dev@gmail.com'
-const secondaryContacts = [
-  { label: 'Phone', value: '+1 (514) 246-4894', link: 'tel:+15142464894', Icon: IcPhone },
-  { label: 'LinkedIn', value: 'in/samer-odeh', link: 'https://www.linkedin.com/in/samer-odeh-1265b1343/', Icon: IcLinkedin },
-  { label: 'GitHub', value: '@samerodeh', link: 'https://github.com/samerodeh', Icon: IcGithub },
-]
-
-/* ----------------------------------------------------------------
-   Section header — staggered eyebrow + title + animated rule
----------------------------------------------------------------- */
-const SectionHead = ({ eyebrow, title, children }) => (
-  <motion.header
-    className="section-head"
-    initial="hidden"
-    whileInView="show"
-    viewport={{ once: true, amount: 0.6 }}
-    variants={container(0.22, 0.08)}
-  >
-    <motion.span className="eyebrow" variants={up}>{eyebrow}</motion.span>
-    <motion.h2 className="section-title" variants={up}>{title}</motion.h2>
-    <motion.span className="title-rule" variants={ruleV} aria-hidden="true" />
+function Reveal({ children, className = '', delay = 0, as = 'div' }) {
+  const reduced = useReducedMotion()
+  const Component = motion[as]
+  return <Component className={className} initial={reduced ? false : { opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12 }} transition={{ duration: 0.78, delay, ease }}>
     {children}
-  </motion.header>
-)
-
-/* ----------------------------------------------------------------
-   Project card — cursor-tracked 3D tilt + spotlight glare
----------------------------------------------------------------- */
-const ProjectCard = ({ p, index }) => {
-  const reduce = useReducedMotion()
-  const px = useMotionValue(0.5)
-  const py = useMotionValue(0.5)
-  const spring = { stiffness: 150, damping: 18, mass: 0.4 }
-  const rotateX = useSpring(useTransform(py, [0, 1], [6.5, -6.5]), spring)
-  const rotateY = useSpring(useTransform(px, [0, 1], [-6.5, 6.5]), spring)
-  const glareX = useTransform(px, [0, 1], ['0%', '100%'])
-  const glareY = useTransform(py, [0, 1], ['0%', '100%'])
-  const glare = useMotionTemplate`radial-gradient(circle at ${glareX} ${glareY}, rgba(229,9,20,0.12), transparent 55%)`
-
-  const handleMove = (e) => {
-    const r = e.currentTarget.getBoundingClientRect()
-    px.set((e.clientX - r.left) / r.width)
-    py.set((e.clientY - r.top) / r.height)
-  }
-  const handleLeave = () => { px.set(0.5); py.set(0.5) }
-
-  return (
-    <motion.article
-      className="proj"
-      variants={up}
-      onMouseMove={reduce ? undefined : handleMove}
-      onMouseLeave={reduce ? undefined : handleLeave}
-      style={reduce ? undefined : { rotateX, rotateY, transformPerspective: 1000 }}
-      whileHover={reduce ? undefined : { scale: 1.015 }}
-      transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-    >
-      {!reduce && <motion.span className="proj-glare" style={{ background: glare }} aria-hidden="true" />}
-      <span className="proj-index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-      <div className="proj-head">
-        <div className="proj-headings">
-          <h3 className="proj-title">{p.title}</h3>
-          {p.kind && <span className="proj-kind">{p.kind}</span>}
-          <span className="proj-kind">{p.date}</span>
-        </div>
-        <motion.a
-          className="proj-icon"
-          href={p.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${p.title} ${p.linkLabel || "source on GitHub"}`}
-          whileHover={{ rotate: -8, scale: 1.12 }}
-          whileTap={{ scale: 0.9 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 15 }}
-        >
-          {p.linkLabel ? <IcArrow className="gh" /> : <IcGithub className="gh" />}
-        </motion.a>
-      </div>
-            <ul className="bullets bullets-sm">
-        {p.features.map((f, j) => <li key={j}><Emphasized text={f} /></li>)}
-      </ul>
-      <div className="chips">
-        {p.tech.map((t) => <span className="chip" key={t}>{t}</span>)}
-      </div>
-      <a className="proj-link" href={p.github} target="_blank" rel="noopener noreferrer">
-        {p.linkLabel || "View source"} <IcArrow className="la" />
-      </a>
-    </motion.article>
-  )
+  </Component>
 }
 
-/* ----------------------------------------------------------------
-   Contact card (secondary) — spring lift on hover
----------------------------------------------------------------- */
-const ContactCard = ({ label, value, link, Icon }) => (
-  <TiltCard
-    as="a"
-    className="contact-card"
-    href={link}
-    {...(link.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-    variants={up}
-  >
-    <span className="contact-ic"><Icon className="cci" /></span>
-    <span className="contact-text">
-      <span className="contact-label">{label}</span>
-      <span className="contact-value">{value}</span>
-    </span>
-    <IcArrow className="ca" />
-  </TiltCard>
-)
+const Arrow = ({ diagonal = false }) => <span aria-hidden="true">{diagonal ? '↗' : '→'}</span>
 
-/* ---------------------------------------------------------------- */
+function SectionIntro({ number, label, title, aside }) {
+  return <div className="section-intro">
+    <div className="section-overline"><span>{number}</span><span>{label}</span></div>
+    <Reveal as="h2" className="section-title">{title}</Reveal>
+    {aside && <Reveal className="section-aside" delay={0.08}>{aside}</Reveal>}
+  </div>
+}
 
-const Home = () => {
-  const [copied, setCopied] = useState(false)
+function ProjectVisual({ index }) {
+  return <div className={`project-visual visual-${index}`} aria-hidden="true">
+    {index === 0 && <div className="visual-phone"><div className="phone-top"><span>LOCALGO</span><span>09:41</span></div><div className="phone-greeting">Good evening,<br /><b>What are you craving?</b></div><div className="phone-search">Ask GOER anything <span>✳</span></div><div className="phone-chat"><span>Find me something vegetarian nearby</span><span>GOER is on it ↗</span></div></div>}
+    {index === 1 && <div className="visual-orbit"><div className="orbit-a"/><div className="orbit-b"/><div className="orbit-core">J</div><span className="orbit-label label-one">VOICE</span><span className="orbit-label label-two">HOME</span><span className="orbit-label label-three">AUTOMATION</span></div>}
+    {index === 2 && <div className="visual-face"><div className="face-grid"/><div className="face-outline"><div className="face-eye left"/><div className="face-eye right"/><div className="face-nose"/><div className="face-mouth"/></div><div className="face-caption">IDENTITY VERIFIED <span>●</span></div></div>}
+  </div>
+}
+
+export default function Home() {
   const location = useLocation()
+  const reduced = useReducedMotion()
+  const { scrollYProgress } = useScroll()
+  const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
 
   useEffect(() => {
-    if (location.hash === '#experience') {
-      const el = document.getElementById('experience')
-      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100)
+    if (location.hash) {
+      const timer = setTimeout(() => document.getElementById(location.hash.slice(1))?.scrollIntoView(), 50)
+      return () => clearTimeout(timer)
     }
   }, [location.hash])
 
-  const copyEmail = () => {
-    // immediate feedback; clipboard write runs in the background (never block the UI)
-    try {
-      const p = navigator.clipboard?.writeText(EMAIL)
-      if (p && typeof p.catch === 'function') p.catch(() => {})
-    } catch {
-      /* clipboard unavailable — "Write me" covers the mailto path */
-    }
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1900)
-  }
-
-  return (
-    <MotionConfig reducedMotion="user">
-      <div className="home">
-        {/* ===== HERO (front page — preserved, motion entrance) ===== */}
-        <section className="hero-section">
-          <StarField />
-          <div className="hero-bottom-fade" aria-hidden="true" />
-          <div className="container">
-            <motion.div
-              className="hero-content"
-              initial="hidden"
-              animate="show"
-              variants={container(0.22, 0.08)}
-            >
-              <motion.p className="hero-subtitle" variants={up}>
-                Full-Stack Engineer &amp; Computer Engineering Student
-              </motion.p>
-              <motion.p className="hero-description" variants={up}>
-                I build production software end to end, from FastAPI backends and Kubernetes infrastructure
-                to React Native apps and multi-agent AI systems. Co-Founder and CPO of LocalGo, freelance
-                full-stack engineer, and Computer Engineering student at Concordia University.
-              </motion.p>
-              <motion.p className="hero-quote" variants={up}>
-                "Developers, developers, developers!" – Steve Ballmer
-              </motion.p>
+  return <>
+    <motion.div className="reading-progress" style={{ scaleX: progress }} aria-hidden="true" />
+    <main id="top">
+      <section className="hero" aria-labelledby="hero-title">
+        <div className="container hero-grid">
+          <div className="hero-copy">
+            <motion.div className="availability" initial={reduced ? false : { opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}><span className="availability-dot" /> BUILDING AT THE INTERSECTION OF SOFTWARE &amp; SYSTEMS</motion.div>
+            <motion.h1 id="hero-title" initial={reduced ? false : { opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.85, delay: 0.12, ease }}>Engineering<br /><em>what's next.</em></motion.h1>
+            <motion.p className="hero-summary" initial={reduced ? false : { opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75, delay: 0.25, ease }}>I'm Samer Odeh, a computer engineering student and software engineer in Montréal. I build useful products across AI, mobile, and infrastructure.</motion.p>
+            <motion.div className="hero-actions" initial={reduced ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.38, ease }}>
+              <a className="button button-dark" href="#projects">Explore my work <Arrow /></a>
+              <a className="text-link" href="#contact">Get in touch <Arrow diagonal /></a>
             </motion.div>
           </div>
-        </section>
+          <div className="hero-art"><HeroSculpture /><div className="art-caption"><span>FIG. 01</span><span>Ideas in motion / 2026</span></div></div>
+        </div>
+        <div className="container hero-foot"><span>SCROLL TO EXPLORE ↓</span><span>MONTRÉAL, QC · CANADA</span></div>
+      </section>
 
-        {/* ===== EXPERIENCE ===== */}
-        <section className="section" id="experience">
-          <div className="container">
-            <SectionHead eyebrow="// 01 · Career" title="Experience" />
+      <div className="intro-band" id="about"><div className="container intro-grid"><span className="band-label">A LITTLE ABOUT ME</span><Reveal as="p">I like the full picture, from the interface you can touch to the infrastructure you never see. My work moves between <strong>product engineering</strong>, <strong>agentic AI</strong>, and <strong>connected systems</strong>.</Reveal><span className="band-index">01 / 04</span></div></div>
 
-            <motion.ol
-              className="timeline"
-              initial="hidden"
-              whileInView="show"
-              viewport={VP_LIST}
-              variants={container(0.22, 0.08)}
-            >
-              <motion.span className="tl-rail" variants={railV} aria-hidden="true" />
-              {experiences.map((exp) => (
-                <motion.li className="tl-item" key={exp.company} variants={up}>
-                  <span className={`tl-node ${exp.current ? 'is-current' : ''}`} aria-hidden="true" />
-                  <TiltCard as="article" className="tl-card">
-                    <div className="tl-top">
-                      <div className="tl-headings">
-                        <h3 className="tl-role">{exp.role}</h3>
-                        <p className="tl-company">
-                          {exp.company}
-                          {exp.clientLinks && <span className="tl-clients"> · {exp.clientLinks.map((client, index) => <React.Fragment key={client.label}>{index > 0 && ", "}<a href={client.url} target="_blank" rel="noopener noreferrer">{client.label}</a></React.Fragment>)}</span>}
-                        </p>
-                      </div>
-                      {exp.current && (
-                        <span className="badge-live"><span className="live-dot" />Present</span>
-                      )}
-                    </div>
+      <section className="work-section section-pad" id="projects" aria-labelledby="projects-title"><div className="container">
+        <SectionIntro number="01 / 04" label="SELECTED WORK" title={<span id="projects-title">Built with intent.</span>} aside="A few things I've brought from idea to working software." />
+        <div className="project-stack">
+          {projects.map((project, index) => <Reveal as="article" className="project-row" key={project.title}>
+            <ProjectVisual index={index} />
+            <div className="project-detail"><div className="project-kicker"><span>0{index + 1} / PROJECT</span><span>{project.date}</span></div><h3>{project.title}</h3><p className="project-lead"><Emphasized text={project.features[0]} /></p><ul className="project-points">{project.features.slice(1).map((feature, i) => <li key={i}><Emphasized text={feature} /></li>)}</ul><div className="project-tags">{project.tech.slice(0, 5).map(tag => <span key={tag}>{tag}</span>)}</div><a className="project-action" href={project.github} target="_blank" rel="noopener noreferrer">{project.linkLabel || 'View source'} <Arrow diagonal /></a></div>
+          </Reveal>)}
+        </div>
+      </div></section>
 
-                    <div className="meta-row">
-                      <span className="meta"><IcPin className="mi" />{exp.location}</span>
-                      <span className="meta"><IcCalendar className="mi" />{exp.period}</span>
-                    </div>
+      <section className="experience-section section-pad" id="experience" aria-labelledby="experience-title"><div className="container">
+        <SectionIntro number="02 / 04" label="EXPERIENCE" title={<span id="experience-title">The work behind<br /><em>the work.</em></span>} aside="Building, shipping, and learning with ambitious teams." />
+        <div className="experience-list">{experiences.map((experience, index) => <Reveal as="article" className="experience-row" key={experience.company}>
+          <div className="experience-num">0{index + 1}</div><div className="experience-main"><h3>{experience.role}</h3><div className="experience-company">{experience.company}{experience.clientLinks && <span> · {experience.clientLinks.map((client, i) => <React.Fragment key={client.label}>{i > 0 && ', '}<a href={client.url} target="_blank" rel="noopener noreferrer">{client.label}</a></React.Fragment>)}</span>}</div><ul>{experience.bullets.map((bullet, i) => <li key={i}><Emphasized text={bullet} /></li>)}</ul></div><div className="experience-meta"><span>{experience.period}</span><span>{experience.location}</span></div>
+        </Reveal>)}</div>
+      </div></section>
 
-                    <ul className="bullets">
-                      {exp.bullets.map((b, j) => <li key={j}><Emphasized text={b} /></li>)}
-                    </ul>
+      <section className="capabilities-section section-pad" aria-labelledby="capabilities-title"><div className="container capabilities-grid"><div><SectionIntro number="03 / 04" label="CAPABILITIES" title={<span id="capabilities-title">Many layers.<br /><em>One mindset.</em></span>} /></div><div className="capabilities-content"><Reveal as="p">Good software takes more than a stack. I combine product thinking with the engineering discipline to make ideas reliable, usable, and ready to scale.</Reveal><div className="capability-lines"><Reveal><span>01</span><strong>Product &amp; mobile</strong><span>React Native · TypeScript · Swift</span></Reveal><Reveal><span>02</span><strong>Backend &amp; AI</strong><span>Python · FastAPI · Groq</span></Reveal><Reveal><span>03</span><strong>Infrastructure</strong><span>Docker · Kubernetes · Terraform</span></Reveal><Reveal><span>04</span><strong>Embedded systems</strong><span>ROS2 · ESP32 · C/C++</span></Reveal></div></div></div></section>
 
-                    <div className="chips">
-                      {exp.tags.map((t) => <span className="chip" key={t}>{t}</span>)}
-                    </div>
-                  </TiltCard>
-                </motion.li>
-              ))}
-            </motion.ol>
-          </div>
-        </section>
-
-        {/* ===== CERTIFICATIONS ===== */}
-        <section className="section" id="certifications">
-          <div className="container">
-            <SectionHead eyebrow="// 02 · Credentials" title="Certifications" />
-            <motion.div
-              className="certs"
-              initial="hidden"
-              whileInView="show"
-              viewport={VP_LIST}
-              variants={container(0.22, 0.08)}
-            >
-              {certifications.map((c) => (
-                <motion.div className="cert" key={c.name} variants={up}>
-                  <span className="cert-icon" aria-hidden="true"><IcAward className="ci" /></span>
-                  <div className="cert-body">
-                    <h3 className="cert-name">{c.name}</h3>
-                    <span className="cert-status">{c.status}</span>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ===== PROJECTS ===== */}
-        <section className="section" id="projects">
-          <div className="container">
-            <SectionHead eyebrow="// 03 · Selected work" title="Projects" />
-            <motion.div
-              className="projects"
-              initial="hidden"
-              whileInView="show"
-              viewport={VP_LIST}
-              variants={container(0.22, 0.08)}
-            >
-              {projects.map((p, i) => <ProjectCard key={p.title} p={p} index={i} />)}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ===== TECHNICAL SKILLS ===== */}
-        <section className="section" id="skills">
-          <div className="container">
-            <SectionHead eyebrow="// 04 · Toolkit" title="Technical Skills" />
-            <motion.div
-              className="skills"
-              initial="hidden"
-              whileInView="show"
-              viewport={VP_LIST}
-              variants={container(0.22, 0.08)}
-            >
-              {skillGroups.map((g) => (
-                <motion.div className="skill-group" key={g.label} variants={up}>
-                  <h3 className="skill-label">{g.label}</h3>
-                  <div className="chips">
-                    {g.items.map((it) => <span className="chip" key={it}>{it}</span>)}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ===== EDUCATION ===== */}
-        <section className="section" id="education">
-          <div className="container">
-            <SectionHead eyebrow="// 05 · Background" title="Education" />
-            <TiltCard
-              className="edu"
-              initial="hidden"
-              whileInView="show"
-              viewport={VP}
-              variants={up}
-            >
-              <span className="edu-icon" aria-hidden="true"><IcCap className="ei" /></span>
-              <div className="edu-body">
-                <h3 className="edu-degree">{education.degree}</h3>
-                <p className="edu-school">{education.school}</p>
-              </div>
-              <div className="meta-row edu-meta">
-                <span className="meta"><IcPin className="mi" />{education.location}</span>
-                <span className="meta"><IcCalendar className="mi" />{education.period}</span>
-              </div>
-            </TiltCard>
-          </div>
-        </section>
-
-        {/* ===== CONTACT ===== */}
-        <section className="section section-contact" id="contact">
-          <div className="container">
-            <SectionHead eyebrow="// 06 · Say hello" title="Get in touch">
-              <motion.p className="section-lede" variants={up}>
-                Open to internships and collaboration — the fastest way to reach me is email,
-                and I usually reply within a day.
-              </motion.p>
-              <motion.span className="loc-pill" variants={up}>
-                <IcPin /> Based in Montreal, QC, Canada
-              </motion.span>
-            </SectionHead>
-
-            <motion.div
-              className="contact-wrap"
-              initial="hidden"
-              whileInView="show"
-              viewport={VP_LIST}
-              variants={container(0.22, 0.08)}
-            >
-              {/* Primary — email with copy-to-clipboard */}
-              <TiltCard className="email-card" variants={up}>
-                <div className="email-main">
-                  <span className="contact-ic big"><IcMail className="cci" /></span>
-                  <div className="contact-text">
-                    <span className="contact-label">Email</span>
-                    <span className="email-value">{EMAIL}</span>
-                  </div>
-                </div>
-                <div className="email-actions">
-                  <motion.button
-                    type="button"
-                    className="copy-btn"
-                    onClick={copyEmail}
-                    whileTap={{ scale: 0.94 }}
-                    aria-label="Copy email address"
-                  >
-                    <motion.span
-                      key={copied ? 'done' : 'copy'}
-                      className={`copy-inner ${copied ? 'is-done' : ''}`}
-                      initial={{ opacity: 0, y: 5 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.22, ease: EASE }}
-                    >
-                      {copied ? <IcCheck className="cbi" /> : <IcCopy className="cbi" />}
-                      {copied ? 'Copied' : 'Copy'}
-                    </motion.span>
-                  </motion.button>
-                  <motion.a
-                    className="write-btn"
-                    href={`mailto:${EMAIL}`}
-                    whileHover={{ y: -2 }}
-                    whileTap={{ scale: 0.96 }}
-                    transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-                  >
-                    Write me <IcArrow className="cbi" />
-                  </motion.a>
-                </div>
-              </TiltCard>
-
-              {/* Secondary — phone, linkedin, github */}
-              <div className="contact-row">
-                {secondaryContacts.map((c) => <ContactCard key={c.label} {...c} />)}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        <footer className="site-footer">
-          <div className="container">
-            <span>© {new Date().getFullYear()} Samer Odeh</span>
-            <span className="foot-dot" aria-hidden="true">•</span>
-            <span>Designed &amp; built in Montreal</span>
-          </div>
-        </footer>
-      </div>
-    </MotionConfig>
-  )
+      <section className="contact-section" id="contact" aria-labelledby="contact-title"><div className="container contact-inner"><div className="contact-overline">04 / 04 &nbsp; · &nbsp; WHAT'S NEXT</div><Reveal as="h2" className="contact-title"><span id="contact-title">Let's make<br /><em>something matter.</em></span></Reveal><div className="contact-bottom"><p>Have an idea, an opportunity, or a good challenge? I'd like to hear about it.</p><a href="mailto:samerodeh.dev@gmail.com" className="contact-button">Start a conversation <Arrow diagonal /></a></div></div></section>
+    </main>
+    <footer className="footer"><div className="container footer-inner"><span>© {new Date().getFullYear()} Samer Odeh</span><div><a href="https://github.com/samerodeh" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/samer-odeh-1265b1343/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="mailto:samerodeh.dev@gmail.com">Email ↗</a></div><a href="#top">Back to top ↑</a></div></footer>
+  </>
 }
-
-export default Home

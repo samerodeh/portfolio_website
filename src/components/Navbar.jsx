@@ -1,76 +1,30 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 import './Navbar.css'
 
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const location = useLocation()
-  const navigate = useNavigate()
+const links = [['Work', '#projects'], ['Experience', '#experience'], ['About', '#about']]
+
+export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const handleBrandClick = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
-  const handleResumeClick = (e) => {
-    e.preventDefault()
-    setIsMobileMenuOpen(false)
-    if (location.pathname === '/') {
-      document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' })
-    } else {
-      navigate('/#experience')
-    }
-  }
-
-  return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="navbar-container">
-        <Link to="/" className="navbar-brand" onClick={handleBrandClick}>
-          <span className="brand-text">Samer Odeh</span>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="navbar-menu">
-          <a
-            href="/#experience"
-            className={`navbar-link ${location.pathname === '/' ? 'active' : ''}`}
-            onClick={handleResumeClick}
-          >
-            Resume
-          </a>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="mobile-menu-button"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        {/* Mobile Navigation */}
-        <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
-          <a
-            href="/#experience"
-            className={`mobile-nav-link ${location.pathname === '/' ? 'active' : ''}`}
-            onClick={handleResumeClick}
-          >
-            Resume
-          </a>
-        </div>
-      </div>
-    </nav>
-  )
+  return <header className={`site-nav ${scrolled ? 'is-scrolled' : ''}`}>
+    <div className="nav-inner">
+      <a className="nav-logo" href="/#top" aria-label="Samer Odeh, back to top"><span className="logo-mark">SO</span><span>Samer Odeh<span className="logo-period">.</span></span></a>
+      <nav className={`nav-links ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
+        {links.map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}
+        <a className="nav-contact" href="mailto:samerodeh.dev@gmail.com" onClick={() => setMenuOpen(false)}>Let's talk <span aria-hidden="true">↗</span></a>
+      </nav>
+      <motion.button className="nav-toggle" type="button" aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} onClick={() => setMenuOpen(v => !v)} whileTap={{ scale: 0.94 }}>
+        <span /><span />
+      </motion.button>
+    </div>
+  </header>
 }
-
-export default Navbar
