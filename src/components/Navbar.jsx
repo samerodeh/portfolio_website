@@ -5,7 +5,7 @@ import './Navbar.css'
 const links = [['Work', '#projects'], ['Experience', '#experience'], ['About', '#about']]
 
 /* Downloadable resume (PDF) served from /public → available at the site root */
-const RESUME_URL = '/samer_resume_cs.pdf'
+const RESUME_URL = '/Samer_Odeh_Resume.pdf'
 const RESUME_FILENAME = 'Samer_Odeh_Resume.pdf'
 
 const DownloadIcon = () => (

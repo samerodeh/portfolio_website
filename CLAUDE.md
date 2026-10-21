@@ -92,8 +92,10 @@ function Reveal({ children, className = '', delay = 0, as = 'div' }) {
 
 The Navbar's top-left cluster (`.nav-left`) holds the logo plus a **Download Resume** button.
 
-- The PDF lives at `public/samer_resume_cs.pdf` and is served at `/samer_resume_cs.pdf`.
-- The link uses the `download` attribute with the friendly filename `Samer_Odeh_Resume.pdf`.
+- The PDF lives at `public/Samer_Odeh_Resume.pdf` and is served at `/Samer_Odeh_Resume.pdf`.
+- The link uses the `download` attribute with the filename `Samer_Odeh_Resume.pdf`. The URL
+  basename matches on purpose: Vercel sends `Content-Disposition` for static files, and
+  Chrome prefers the server filename over the `download` attribute when they differ.
 - Desktop: the button sits next to the logo in the top-left (`.nav-resume`).
 - Mobile (≤680px): the top-left button is hidden and the link moves into the dropdown
   menu as `.nav-resume-mobile`.
