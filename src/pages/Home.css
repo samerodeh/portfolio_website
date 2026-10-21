@@ -26,13 +26,13 @@ section[id], div[id] { scroll-margin-top: 78px; }
 .hero-foot { display: flex; justify-content: space-between; align-items: center; color: #778682; padding-top: 3px; padding-bottom: 30px; }
 .intro-band { padding: 50px 0; background: #e8eee9; border-bottom: 1px solid #d6e0d8; }
 .intro-grid { display: grid; grid-template-columns: 180px 1fr 70px; gap: 25px; align-items: start; }
-.band-label, .band-index { color: #6b7f79; padding-top: 7px; }
+.band-label, .band-index { color: #556a64; padding-top: 7px; }
 .band-index { text-align: right; }
 .intro-grid p { max-width: 930px; margin: 0; color: #384946; font: 450 clamp(21px, 2.35vw, 35px)/1.4 var(--display); letter-spacing: -.04em; }
 .intro-grid strong { color: var(--teal); font-weight: 650; }
 .section-pad { padding: clamp(90px, 11vw, 150px) 0; }
 .section-intro { display: grid; grid-template-columns: 1fr 300px; column-gap: 30px; align-items: end; margin-bottom: 62px; }
-.section-overline { grid-column: 1/-1; display: flex; gap: 18px; color: #66817c; margin-bottom: 23px; }
+.section-overline { grid-column: 1/-1; display: flex; gap: 18px; color: #55716b; margin-bottom: 23px; }
 .section-overline span:first-child { color: var(--teal); }
 .section-title { margin: 0; color: var(--ink); font: 600 clamp(46px, 5.7vw, 88px)/1.02 var(--display); letter-spacing: -.07em; }
 .section-aside { color: #70807c; max-width: 290px; line-height: 1.6; font-size: 15px; padding-bottom: 9px; }

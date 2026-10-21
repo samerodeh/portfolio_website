@@ -2,7 +2,11 @@
 
 ## What This Is
 
-Samer Odeh's personal portfolio website — a single-page resume/portfolio built with React and Vite. It showcases his experience, projects, technical skills, and contact info. Auto-deploys to Vercel (project `samerodeh.dev`) on every push to `main`; live at `https://samerodeh.dev`.
+Samer Odeh's personal portfolio website — a single-page resume/portfolio built with React and Vite. It showcases his experience, projects, technical skills, and contact info. Auto-deploys to Vercel on every push to `main`.
+
+**Live URL:** `https://samerodehdev.vercel.app`
+
+> The old `samerodeh.dev` domain does **not** resolve. Use `samerodehdev.vercel.app` everywhere (canonical URL, `robots.txt`, `sitemap.xml`, OG/Twitter image URLs, JSON-LD `url`).
 
 ## Tech Stack
 
@@ -12,117 +16,104 @@ Samer Odeh's personal portfolio website — a single-page resume/portfolio built
 | Build tool | Vite 4 |
 | Routing | React Router DOM v6 |
 | Animations | Framer Motion 11 |
-| 3D / WebGL | Three.js |
+| 3D / WebGL | Three.js (`HeroSculpture`) |
 | Styling | Plain CSS (no preprocessor, no CSS modules) |
 | Fonts | Bricolage Grotesque, DM Sans, JetBrains Mono (Google Fonts) |
-| Deployment | Netlify |
+| Deployment | Vercel (auto-deploy from `main`) |
 
 ## Project Structure
 
 ```
 src/
-  App.jsx              # Root — mounts ParticleNet globally, defines routes
-  App.css              # Global layout (.app, .main-content, .container)
-  index.css            # Design tokens (:root CSS variables) + body/html base styles
+  App.jsx              # Root — BrowserRouter + routes
+  App.css              # .app, .container (max-width 1280px)
+  index.css            # Design tokens (:root) + base styles
   main.jsx             # React entry point
+  resumeContent.jsx    # SINGLE SOURCE OF TRUTH for resume content
 
   components/
-    Navbar.jsx / .css  # Fixed top nav
-    ScrollToTop.jsx    # Resets scroll on route change
-    StarField.jsx      # Three.js star field — used only in the hero section
-    ParticleNet.jsx    # Three.js connected-node particle network — fixed backdrop for all pages
+    Navbar.jsx / .css  # Fixed top nav (78px) — logo, links, resume download
+    HeroSculpture.jsx  # Three.js knot sculpture in the hero
 
   pages/
-    Home.jsx / .css    # Main resume page (hero, experience, projects, skills, education, contact)
-    Experiences.jsx / .css
-    SkillsProjects.jsx / .css
-    Contact.jsx / .css
+    Home.jsx / .css    # The entire site: hero, work, experience, capabilities, contact
 ```
+
+The old dark-theme site (`ParticleNet`, `StarField`, `TiltCard`, `ScrollToTop`, and the
+standalone `Experiences` / `SkillsProjects` / `Contact` pages) was **deleted**. Do not
+restore it. `/experiences`, `/skills-projects`, and `/contact` are now redirect routes
+handled in `App.jsx` via `<Navigate>`.
 
 ## Design System
 
-All design tokens live in `src/index.css` as CSS custom properties on `:root`.
+Tokens live in `src/index.css` as CSS custom properties on `:root`.
 
-**Color scheme — dark theme:**
-- `--bg: #080808` — near-black page background
-- `--surface: #111111` — card backgrounds
-- `--surface-2: #1c1c1c` — chip/inset backgrounds
-- `--border: rgba(255,255,255,0.07)` — subtle borders
-- `--ink: #f0f0f0` — primary text
-- `--text: rgba(255,255,255,0.68)` — body text
-- `--muted: rgba(255,255,255,0.42)` — meta text
-- `--accent: #e50914` — signature red
-- `--accent-deep: #ff4a52` — brighter red for dark-bg links/text
-- `--accent-wash: rgba(229,9,20,0.12)` — red tint wash
+**Color scheme — light "paper" editorial:**
+- `--paper: #f5f6f3` — page background
+- `--ink: #172021` — primary text, logo mark, dark buttons
+- `--teal: #225b5e` — signature accent (headline emphasis, links)
+- `--muted: #667271` — secondary text
+- `--line: #d9dfdb` — hairline borders
 
 **Typography:**
-- Display headings: `Bricolage Grotesque` via `--font-display`
-- Body: `DM Sans` via `--font-body`
-- Monospace / chips: `JetBrains Mono` via `--font-mono`
+- Display headings: `Bricolage Grotesque` via `--display`
+- Body: `DM Sans`
+- Labels / eyebrows / metadata: `JetBrains Mono` (uppercase, wide letter-spacing)
 
-**Section titles** use a CSS gradient text (`#d8d8de → #ff4a52`) via `-webkit-background-clip: text`.
+Section anchors used by the navbar: `#top`, `#about`, `#projects`, `#experience`, `#contact`.
 
-## Three.js Setup
+## Hero
 
-### StarField (`src/components/StarField.jsx`)
-- Mounted inside `.hero-section` as `position: absolute; inset: 0; z-index: 0`
-- 2200 glowing white points (PointsMaterial + CanvasTexture radial glow + AdditiveBlending)
-- Slow rotation + mouse parallax
-- Respects `prefers-reduced-motion`
-
-### ParticleNet (`src/components/ParticleNet.jsx`)
-- Mounted in `App.jsx` above `.app` — renders globally on all pages
-- `position: fixed; inset: 0; z-index: -1` — sits behind all content
-- 85 nodes with connecting LineSegments when within distance threshold (`MAX_DIST = 3.8`)
-- Positions update each frame; line geometry rebuilt via `setDrawRange`
-- Respects `prefers-reduced-motion`
-
-**Important CSS gotcha:** The `html` element must have `background: #080808` (set in `index.css`). All page-level containers (`body`, `.app`, `.section`) must be `background: transparent` so the fixed canvas shows through. The three other page CSS files (`Experiences.css`, `SkillsProjects.css`, `Contact.css`) previously set `.section { background: #f8f9fa }` globally — these are now `transparent`.
+`HeroSculpture.jsx` renders a Three.js trefoil-knot sculpture with a wireframe overlay,
+mouse-parallax rotation, and a graceful no-WebGL fallback. It sits in `.hero-art`
+(right column of `.hero-grid`, a 1.02fr / 0.98fr split on desktop, stacked below 740px).
 
 ## Animation System
 
-All animations use the same shared constants for visual consistency:
+Home.jsx uses a shared `<Reveal>` wrapper built on Framer Motion:
 
-```js
-const EASE = [0.22, 1, 0.36, 1]                            // custom cubic-bezier
-const up = { hidden: { opacity: 0, y: 32 }, show: { opacity: 1, y: 0, transition: { duration: 1.0, ease: EASE } } }
-const container = (stagger = 0.15, delay = 0.05) => ({ hidden: {}, show: { transition: { staggerChildren: stagger, delayChildren: delay } } })
-const VP = { once: true, amount: 0.15 }                    // viewport trigger
-```
-
-- **All stagger values are 0.15** across all sections for uniform pacing.
-- **Duration is 1.0s** (slow, deliberate entrance).
-- **`y: 32`** offset gives a noticeable-but-not-jarring slide.
-- Hero content uses `animate="show"` (mounts immediately); all other sections use `whileInView` + `viewport`.
-- All four page components (Home, Experiences, SkillsProjects, Contact) use these same variants.
-
-## Hero-to-Experience Transition
-
-The `.hero-bottom-fade` div (last child of `.hero-section`) creates a smooth visual bridge:
-
-```css
-.hero-bottom-fade {
-  position: absolute; bottom: 0; left: 0; right: 0; height: 220px;
-  background: linear-gradient(to bottom, transparent 0%, #080808 100%);
-  pointer-events: none; z-index: 3;
+```jsx
+function Reveal({ children, className = '', delay = 0, as = 'div' }) {
+  const reduced = useReducedMotion()
+  const Component = motion[as]
+  return <Component className={className} initial={reduced ? false : { opacity: 0, y: 26 }}
+    whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12 }}
+    transition={{ duration: 0.78, delay, ease }}>
+    {children}</Component>
 }
 ```
 
-This fades the starfield out at the hero's bottom edge, blending into the dark page background below.
+- `ease = [0.22, 1, 0.36, 1]` — shared cubic-bezier for the whole site.
+- `viewport={{ once: true }}` — reveal fires once on scroll-into-view.
+- `useReducedMotion()` disables the entrance animation for users who ask for less motion.
+- A `.reading-progress` bar tracks scroll progress via `useScroll` + `useSpring`.
 
-## Resume Button Scroll Behavior
+## Resume Download (top-left)
 
-The Navbar "Resume" link (`Navbar.jsx`) smooth-scrolls to `#experience` when already on `/`.
-When navigating from another page, it routes to `/#experience`.
-`Home.jsx` has a `useEffect` on `location.hash` that calls `scrollIntoView({ behavior: 'smooth' })` when hash is `#experience`.
+The Navbar's top-left cluster (`.nav-left`) holds the logo plus a **Download Resume** button.
+
+- The PDF lives at `public/samer_resume_cs.pdf` and is served at `/samer_resume_cs.pdf`.
+- The link uses the `download` attribute with the friendly filename `Samer_Odeh_Resume.pdf`.
+- Desktop: the button sits next to the logo in the top-left (`.nav-resume`).
+- Mobile (≤680px): the top-left button is hidden and the link moves into the dropdown
+  menu as `.nav-resume-mobile`.
+- To swap in a new resume, replace the file in `public/` (keep the same filename, or
+  update `RESUME_URL` in `Navbar.jsx`).
+
+## Social Preview Image
+
+`public/og-image.jpg` is a 1200×630 render of the site used for `og:image` and
+`twitter:image`. Regenerate it the same way if the design changes: screenshot the page at
+1200px wide, crop the top 630px, and encode as JPEG.
 
 ## Key Conventions
 
-- **No em-dashes (`—`) in content text.** Use `:` or `,` instead. The only acceptable dashes are in date ranges (e.g., `Jan 2026 — Present`), which use `·` for section eyebrows.
-- Section eyebrow format: `// 01 · Career`, `// 02 · Selected work`, etc.
-- All animations use Framer Motion with `viewport={{ once: true }}` — they fire once on scroll-into-view.
+- **No em-dashes (`—`) in content text.** Use `:` or `,` instead. Date ranges use an
+  en-dash (`–`).
+- Section eyebrow format: `01` / `02` in mono, with a teal overline and a large display title.
 - No TypeScript — plain JSX throughout.
 - No CSS modules — all styles are global CSS files imported per component.
+- Content is data, not markup: edit `src/resumeContent.jsx` to change facts.
 
 ## Dev Commands
 
@@ -132,12 +123,21 @@ npm run build    # Production build → dist/
 npm run preview  # Serve the dist/ build locally
 ```
 
+> On Windows + OneDrive, `npm run dev` can fail with `EPERM ... rmdir node_modules/.vite/deps`
+> (OneDrive file locking). Use `npm run build && npm run preview` to verify changes.
+
 ## Content Data
 
-All resume content (`experiences`, `certifications`, `projects`, `skillGroups`, `education`, `secondaryContacts`) is defined as plain JS arrays/objects at the top of `src/pages/Home.jsx`. To update content, edit those data structures — no CMS or external data source. Source of truth for the facts is Samer's master resume (`~/.claude/skills/edit-resume/resume/master-resume.md` and the exported `~/OneDrive/Desktop/resumes/samer_resume.pdf`).
-
-`Home.jsx` is the entire live site. The `/experiences`, `/skills-projects`, and `/contact` routes in `App.jsx` still exist but are **not linked from the Navbar**; their page components carry a mirrored copy of the same content kept in sync manually.
+All resume content (`experiences`, `projects`) lives in `src/resumeContent.jsx`.
+`Home.jsx` is the entire live site and imports from there — there is no CMS.
+The `Emphasized` helper renders `**bold**` markers from the resume as `<strong>`.
 
 ## Deployment
 
-Vercel auto-deploys from the `main` branch (project `samerodeh.dev`, production domain `https://samerodeh.dev`). Vercel runs `npm run build` itself, but `dist/` is also committed to the repo. The commit status on `main` reports the Vercel deploy result.
+Vercel auto-deploys from the `main` branch. Vercel runs `npm run build` itself, but
+`dist/` is also committed to the repo. The commit status on `main` reports the Vercel
+deploy result. Check deployments with:
+
+```bash
+gh api repos/samerodeh/portfolio_website/deployments --jq '.[] | {sha: .sha[0:7], environment, created_at}'
+```

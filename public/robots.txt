@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://samerodeh.dev/sitemap.xml
+Sitemap: https://samerodehdev.vercel.app/sitemap.xml
